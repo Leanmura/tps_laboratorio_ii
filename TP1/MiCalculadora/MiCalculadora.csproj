@@ -10,4 +10,10 @@
     <ProjectReference Include="..\Entiades\Entidades.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Entiades">
+      <HintPath>..\Entiades\obj\Debug\Entiades.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
