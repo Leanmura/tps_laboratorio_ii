@@ -47,7 +47,7 @@ namespace MiCalculadora
                 {
                     operador = "+";
                 }
-                sb.AppendFormat("{0} {1} {2} = {3:#.##}", txtNumero1.Text, operador, txtNumero2.Text, lblResultado.Text);
+                sb.AppendFormat("{0} {1} {2} = {3}", txtNumero1.Text, operador, txtNumero2.Text, lblResultado.Text);
                 lstOperaciones.Items.Add(sb.ToString());
                 
             }
