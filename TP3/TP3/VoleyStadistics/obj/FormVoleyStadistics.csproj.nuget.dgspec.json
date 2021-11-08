@@ -116,6 +116,64 @@
         }
       }
     },
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj",
+        "projectName": "IO",
+        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj",
+        "packagesPath": "C:\\Users\\Leandro\\.nuget\\packages\\",
+        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj": {
+                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\VoleyStadistics\\FormVoleyStadistics.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -142,6 +200,9 @@
             "projectReferences": {
               "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj": {
                 "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj"
+              },
+              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj": {
+                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj"
               }
             }
           }

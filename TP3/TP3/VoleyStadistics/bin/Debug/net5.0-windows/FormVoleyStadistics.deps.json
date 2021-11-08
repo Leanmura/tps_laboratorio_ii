@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v5.0": {
       "FormVoleyStadistics/1.0.0": {
         "dependencies": {
-          "Entidades": "1.0.0"
+          "Entidades": "1.0.0",
+          "IO": "1.0.0"
         },
         "runtime": {
           "FormVoleyStadistics.dll": {}
@@ -26,6 +27,14 @@
         "runtime": {
           "Excepciones.dll": {}
         }
+      },
+      "IO/1.0.0": {
+        "dependencies": {
+          "Excepciones": "1.0.0"
+        },
+        "runtime": {
+          "IO.dll": {}
+        }
       }
     }
   },
@@ -41,6 +50,11 @@
       "sha512": ""
     },
     "Excepciones/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "IO/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

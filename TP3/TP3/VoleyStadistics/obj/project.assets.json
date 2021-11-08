@@ -24,6 +24,19 @@
         "runtime": {
           "bin/placeholder/Excepciones.dll": {}
         }
+      },
+      "IO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Excepciones": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/IO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/IO.dll": {}
+        }
       }
     }
   },
@@ -37,11 +50,17 @@
       "type": "project",
       "path": "../Excepciones/Excepciones.csproj",
       "msbuildProject": "../Excepciones/Excepciones.csproj"
+    },
+    "IO/1.0.0": {
+      "type": "project",
+      "path": "../IO/IO.csproj",
+      "msbuildProject": "../IO/IO.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
-      "Entidades >= 1.0.0"
+      "Entidades >= 1.0.0",
+      "IO >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -73,6 +92,9 @@
           "projectReferences": {
             "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj": {
               "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj"
+            },
+            "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj": {
+              "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj"
             }
           }
         }

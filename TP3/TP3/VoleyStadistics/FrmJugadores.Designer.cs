@@ -29,7 +29,7 @@ namespace FormVoleyStadistics
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridJugadores = new System.Windows.Forms.DataGridView();
             this.btnNuevoJugador = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -52,14 +52,14 @@ namespace FormVoleyStadistics
             this.dataGridJugadores.Name = "dataGridJugadores";
             this.dataGridJugadores.ReadOnly = true;
             this.dataGridJugadores.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridJugadores.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridJugadores.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridJugadores.RowHeadersVisible = false;
             this.dataGridJugadores.RowTemplate.Height = 25;
             this.dataGridJugadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -103,7 +103,7 @@ namespace FormVoleyStadistics
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(103, 28);
             this.btnGuardar.TabIndex = 4;
-            this.btnGuardar.Text = "Guardar .Xml";
+            this.btnGuardar.Text = "Guardar ";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
@@ -113,7 +113,7 @@ namespace FormVoleyStadistics
             this.btnCargar.Name = "btnCargar";
             this.btnCargar.Size = new System.Drawing.Size(103, 28);
             this.btnCargar.TabIndex = 5;
-            this.btnCargar.Text = "Cargar .Xml";
+            this.btnCargar.Text = "Cargar";
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
