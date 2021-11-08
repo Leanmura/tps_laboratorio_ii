@@ -24,7 +24,7 @@ namespace Entidades
             {
                 if(value < 0)
                 {
-                    throw new InvalidNumberExeption();
+                    throw new InvalidNumberExeption(); // lanzo excepcion propia
                 }
                 else
                 {

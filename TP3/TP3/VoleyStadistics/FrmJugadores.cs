@@ -20,7 +20,7 @@ namespace FormVoleyStadistics
         private OpenFileDialog openFileDialog;
         private SaveFileDialog saveFileDialog;
         private string ultimoArchivo;
-        private ExtXml<List<JugadorDeVoley>> extXml;
+        private ExtXml<List<JugadorDeVoley>> extXml; // se crea atributo de clase generica
         private ExtJson<List<JugadorDeVoley>> extJson;
 
 
@@ -55,7 +55,7 @@ namespace FormVoleyStadistics
             this.openFileDialog.Filter = "Archivo XML|*.xml|Archivo JSON|*.json";
             this.saveFileDialog = new SaveFileDialog();
             this.saveFileDialog.Filter = "Archivo XML|*.xml|Archivo JSON|*.json";
-            this.extXml = new ExtXml<List<JugadorDeVoley>>();
+            this.extXml = new ExtXml<List<JugadorDeVoley>>(); // se instacia la clase generica
             this.extJson = new ExtJson<List<JugadorDeVoley>>();
 
         }
@@ -112,7 +112,7 @@ namespace FormVoleyStadistics
                     switch (Path.GetExtension(this.UltimoArchivo))
                     {
                         case ".xml":
-                            this.listaDeJugadores = this.extXml.Leer(UltimoArchivo);
+                            this.listaDeJugadores = this.extXml.Leer(UltimoArchivo); // metodo de la clase generica
 
                             break;
                         case ".json":
@@ -150,7 +150,7 @@ namespace FormVoleyStadistics
             }
         }
 
-        //private void GuardarDatos()
+        //private void GuardarDatos() hecho en una libreria de clase
         //{
         //    try
         //    {
@@ -184,8 +184,11 @@ namespace FormVoleyStadistics
         //        }
         //
 
+        /// <summary>
+        /// Guarda un archivo permitiendo escoger el ugar y nombre con el que se guardara.
+        /// </summary>
          private void GuardarComo()
-        {
+         {
             this.UltimoArchivo = SeleccionarUbicacionGuardado();
 
             try
@@ -208,6 +211,9 @@ namespace FormVoleyStadistics
             }
         }
 
+        /// <summary>
+        /// Guarda un archvio ya guardado anteriormente.
+        /// </summary>
         private void Guardar()
         {
             try
