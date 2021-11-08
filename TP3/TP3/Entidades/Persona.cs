@@ -74,8 +74,9 @@ namespace Entidades
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append( this.Nombre + ", " + this.Apellido + ", " +
-                this.PaisDeNacimiento + ", " + this.FechaNacimiento.ToShortDateString());
+            sb.Append( "Nomnbre: " + this.Nombre + ", Apellido: " + this.Apellido + 
+                ", Pais de nacimeinto: " + this.PaisDeNacimiento + ", Fecha de Naicimiento:" +
+                this.FechaNacimiento.ToShortDateString());
 
             return sb.ToString();
         }
@@ -96,20 +97,20 @@ namespace Entidades
         //    return !(p1 == p2);
         //}
 
-        public override bool Equals(object obj)
-        {
-            bool retorno = false;
-            if(obj is Persona)
-            {
-                retorno = (Persona)obj == this;
-            }
-            return retorno;
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    bool retorno = false;
+        //    if(obj is Persona)
+        //    {
+        //        retorno = (Persona)obj == this;
+        //    }
+        //    return retorno;
+        //}
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        //public override int GetHashCode()
+        //{
+        //    return base.GetHashCode();
+        //}
         #endregion
 
         /// <summary>

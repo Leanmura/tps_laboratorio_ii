@@ -165,7 +165,7 @@ namespace Entidades
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.IdJugador + " " + base.ToString() + ", " + this.Peso + ", " + this.Altura + ", " + this.Posicion);
+            sb.Append("ID: "+ this.IdJugador + ", " + base.ToString() + ", Peso: " + this.Peso + ", Altura: " + this.Altura + ", " + this.Posicion);
 
             return sb.ToString();
         }

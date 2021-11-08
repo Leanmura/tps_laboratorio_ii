@@ -78,7 +78,7 @@ namespace Entidades
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.AppendLine(this.CopasDelMundo.ToString());
+            sb.AppendLine("Copas del mundo: "+ this.CopasDelMundo.ToString());
             return sb.ToString();
         }
         #endregion

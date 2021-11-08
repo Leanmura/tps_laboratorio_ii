@@ -73,7 +73,15 @@ namespace Entidades
         }
         public static Club operator +(Club club, JugadorDeVoley jugador)
         {
-            club.AgregarJugador(jugador);
+            try
+            {
+                club.AgregarJugador(jugador);
+
+            }
+            catch(ArgumentException)
+            {
+
+            }
             return club;
         }
 
@@ -81,8 +89,8 @@ namespace Entidades
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.AppendLine(this.Localidad.ToString());
-            sb.AppendLine(this.Liga);
+            sb.AppendLine("Pais: " + this.Localidad.ToString());
+            sb.AppendLine("Liga: "+this.Liga);
             return sb.ToString();
         }
         #endregion

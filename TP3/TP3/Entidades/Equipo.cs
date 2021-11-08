@@ -97,8 +97,9 @@ namespace Entidades
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(this.Nombre);
-            sb.AppendLine(this.Entrenador.ToString());
+            sb.AppendLine("Nombre: "+this.Nombre);
+            sb.AppendLine("Entrenador: " + this.Entrenador.ToString());
+            sb.AppendLine("Lista de jugadores: " );
 
             foreach (JugadorDeVoley item in this.listaDeJugadores)
             {

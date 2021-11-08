@@ -104,7 +104,7 @@ namespace Entidades
             {
                 exJugador = "No";
             }
-            sb.Append(this.IdEntrenador + " " + base.ToString() + ", Exjugador: " + exJugador);
+            sb.Append("ID: " + this.IdEntrenador + ", " + base.ToString() + ", Exjugador: " + exJugador);
 
             return sb.ToString();
         }
