@@ -15,25 +15,32 @@ namespace FormVoleyStadistics
     {
         private FrmJugadores frmJugadores;
         public List<JugadorDeVoley> listaDeJugadores;
-        
+        public List<Entrenador> listaEntrenadores;
+
         public FrmVoleyStadistics()
         {
             InitializeComponent();
-            this.listaDeJugadores = new List<JugadorDeVoley>();
+            this.frmJugadores = new FrmJugadores();//listaDeJugadores);
+            this.frmJugadores.listaDeJugadores = new List<JugadorDeVoley>();
         }
 
 
         private void btnJugadores_Click(object sender, EventArgs e)
         {
-            AbrirFrmJugadores(this.listaDeJugadores);
+            this.frmJugadores.ShowDialog();
+            //AbrirFrmJugadores();//this.frmJugadores.listaDeJugadores);
         }
 
         #region Metodos privados
-        private DialogResult AbrirFrmJugadores(List<JugadorDeVoley> listaDeJugadores)
-        {
-            frmJugadores = new FrmJugadores(listaDeJugadores);
-            return frmJugadores.ShowDialog();
-        }
+        //private DialogResult AbrirFrmJugadores()//List<JugadorDeVoley> listaDeJugadores)
+        //{
+        //    return this.frmJugadores.ShowDialog();
+        //}
         #endregion
+
+        private void btnEntrenadores_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

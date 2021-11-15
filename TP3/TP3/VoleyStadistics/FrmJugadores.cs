@@ -46,10 +46,10 @@ namespace FormVoleyStadistics
             FrmJugadores.rutaArchivo = Path.Combine(rutaEscritorio, nombreArchivo);
         }
 
-        public FrmJugadores(List<JugadorDeVoley> listaDeJugadores)
+        public FrmJugadores()//List<JugadorDeVoley> listaDeJugadores)
         {
             InitializeComponent();
-            this.listaDeJugadores = listaDeJugadores;
+            //this.listaDeJugadores = listaDeJugadores;
             this.frmNuevoJugador = new FrmNuevoJugador();
             this.openFileDialog = new OpenFileDialog();
             this.openFileDialog.Filter = "Archivo XML|*.xml|Archivo JSON|*.json";
@@ -73,7 +73,7 @@ namespace FormVoleyStadistics
                 this.lblMensaje.Visible = true;
                 this.lblMensaje.ForeColor = System.Drawing.Color.Black;
                 this.lblMensaje.Text = "Jugador Creado Correctamente.";
-                this.listaDeJugadores.Add(frmNuevoJugador.NuevoJugador);
+                this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
                 this.RefrescarDataGrid();
 
             }
@@ -85,6 +85,9 @@ namespace FormVoleyStadistics
             {
                 this.btnModificar.Visible = true;
                 this.btnEliminar.Visible = true;
+                // Recuperar del data grid
+                // JugadorDeVoley auxJugador = (JugadorDeVoley)dataGridJugadores.CurrentRow.DataBoundItem;
+                // Modificar(auxJugador); // cuando clickee el boton modificar
             }
         }
 
@@ -103,7 +106,12 @@ namespace FormVoleyStadistics
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            if (this.openFileDialog.ShowDialog() == DialogResult.OK)
+            DialogResult confirmacion = DialogResult.Yes;
+            if (this.listaDeJugadores.Count > 0)
+            {
+               confirmacion =  MessageBox.Show("Si carga un nuevo archivo se perderan los datos actuales. \nDesea continuar? ", "Confirmacion" ,MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+            if (confirmacion == DialogResult.Yes && this.openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 this.ultimoArchivo = this.openFileDialog.FileName;
 
@@ -121,10 +129,10 @@ namespace FormVoleyStadistics
                     }
                     this.RefrescarDataGrid();
                 }
-                catch (Exception ev)
+                catch (Exception ex)
                 {
                     this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                    this.lblMensaje.Text = this.lblMensaje.Text = ev.Message; //"ERROR: no se pudo cargar los datos.";
+                    this.lblMensaje.Text = this.lblMensaje.Text = ex.Message; //"ERROR: no se pudo cargar los datos.";
                     this.lblMensaje.Visible = true;
                 }
             }
@@ -143,9 +151,9 @@ namespace FormVoleyStadistics
         /// </summary>
         private void RefrescarDataGrid()
         {
-            if(this.listaDeJugadores.Count > 0)
+            if (this.listaDeJugadores.Count > 0)
             {
-                 this.dataGridJugadores.DataSource = null;
+                this.dataGridJugadores.DataSource = null;
                 this.dataGridJugadores.DataSource = this.listaDeJugadores;
             }
         }
@@ -185,7 +193,7 @@ namespace FormVoleyStadistics
         //
 
         /// <summary>
-        /// Guarda un archivo permitiendo escoger el ugar y nombre con el que se guardara.
+        /// Guarda un archivo permitiendo escoger el lugar y nombre con el que se guardara.
         /// </summary>
          private void GuardarComo()
          {

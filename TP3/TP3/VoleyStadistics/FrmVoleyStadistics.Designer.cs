@@ -57,6 +57,7 @@ namespace FormVoleyStadistics
             this.btnEntrenadores.TabIndex = 1;
             this.btnEntrenadores.Text = "Entrenadores";
             this.btnEntrenadores.UseVisualStyleBackColor = true;
+            this.btnEntrenadores.Click += new System.EventHandler(this.btnEntrenadores_Click);
             // 
             // btnEstadisticas
             // 

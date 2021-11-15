@@ -100,3 +100,5 @@ E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP3\TP3\UnitTest\obj\
 E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP3\TP3\UnitTest\obj\Debug\net5.0\ref\UnitTest.dll
 E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP3\TP3\UnitTest\obj\Debug\net5.0\UnitTest.pdb
 E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP3\TP3\UnitTest\obj\Debug\net5.0\UnitTest.genruntimeconfig.cache
+E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP3\TP3\UnitTest\bin\Debug\net5.0\Excepciones.dll
+E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP3\TP3\UnitTest\bin\Debug\net5.0\Excepciones.pdb
