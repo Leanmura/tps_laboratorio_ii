@@ -6153,11 +6153,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\UnitTest\\UnitTest.csproj",
+      "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\UnitTest\\UnitTest.csproj",
       "projectName": "UnitTest",
-      "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\UnitTest\\UnitTest.csproj",
+      "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\UnitTest\\UnitTest.csproj",
       "packagesPath": "C:\\Users\\Leandro\\.nuget\\packages\\",
-      "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\UnitTest\\obj\\",
+      "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6174,8 +6174,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj": {
-              "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj"
+            "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj": {
+              "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj"
             }
           }
         }

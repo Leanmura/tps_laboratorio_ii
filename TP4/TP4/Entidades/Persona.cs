@@ -49,10 +49,10 @@ namespace Entidades
         }
         protected Persona(string nombre, string apellido, EPais paisDeNacimiento, DateTime fechaNacimiento):this()
         {
-            this.Nombre = nombre;
-            this.Apellido = apellido;
-            this.PaisDeNacimiento = paisDeNacimiento;
-            this.FechaNacimiento = fechaNacimiento;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.paisDeNacimiento = paisDeNacimiento;
+            this.fechaNacimiento = fechaNacimiento;
         }
 
 

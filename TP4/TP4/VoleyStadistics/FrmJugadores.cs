@@ -50,7 +50,7 @@ namespace FormVoleyStadistics
         {
             InitializeComponent();
             //this.listaDeJugadores = listaDeJugadores;
-            this.frmNuevoJugador = new FrmNuevoJugador();
+            //this.frmNuevoJugador = new FrmNuevoJugador();
             this.openFileDialog = new OpenFileDialog();
             this.openFileDialog.Filter = "Archivo XML|*.xml|Archivo JSON|*.json";
             this.saveFileDialog = new SaveFileDialog();
@@ -141,8 +141,9 @@ namespace FormVoleyStadistics
         #region Metodos privados
         private DialogResult AbrirFrmNuevoJugador()
         {
+            int id = new JugadorDeVoley().GenerarId(this.listaDeJugadores);
             this.lblMensaje.Visible = false;
-            this.frmNuevoJugador = new FrmNuevoJugador();
+            this.frmNuevoJugador = new FrmNuevoJugador(id);
             return this.frmNuevoJugador.ShowDialog();
         }
 

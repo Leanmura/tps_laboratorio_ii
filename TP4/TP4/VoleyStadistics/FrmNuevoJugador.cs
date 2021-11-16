@@ -14,18 +14,20 @@ namespace FormVoleyStadistics
     public partial class FrmNuevoJugador : Form
     {
         private JugadorDeVoley nuevoJugador;
+        private int id;
 
         public JugadorDeVoley NuevoJugador
         {
             get
             {
-                return this.nuevoJugador;
+                return this.nuevoJugador; // con esta propiedad podemos acceder al jugador creado en esta instancia
             }
         }
 
-        public FrmNuevoJugador()
+        public FrmNuevoJugador(int id)
         {
             InitializeComponent();
+            this.id = id;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -36,6 +38,8 @@ namespace FormVoleyStadistics
                     (EPais)this.cmbNacionalidad.SelectedIndex, this.dateTimeFechaNacimiento.Value,
                     double.Parse(this.txtPeso.Text), double.Parse(this.txtAltura.Text),
                     (EPosicion)this.cmbPosicion.SelectedIndex);
+
+                nuevoJugador.Id = this.id;
                 this.DialogResult = DialogResult.OK;
                 Close();
             }
@@ -47,7 +51,7 @@ namespace FormVoleyStadistics
 
         private void FrmNuevoJugador_Load(object sender, EventArgs e)
         {
-            lblId.Text = "Jugador #" + JugadorDeVoley.NextId.ToString();
+            lblId.Text = "Jugador #" + this.id;
             cmbPosicion.Items.AddRange(Enum.GetNames(typeof(EPosicion)));
             cmbPosicion.SelectedIndex = 0;
             cmbNacionalidad.Items.AddRange(Enum.GetNames(typeof(EPais)));
@@ -59,6 +63,7 @@ namespace FormVoleyStadistics
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
 
     }
 }

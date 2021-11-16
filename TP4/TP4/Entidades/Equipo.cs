@@ -62,8 +62,8 @@ namespace Entidades
 
         protected Equipo(string nombre,  Entrenador entrenador): this()
         {
-            this.Nombre = nombre;
-            this.Entrenador = entrenador;
+            this.nombre = nombre;
+            this.entrenador = entrenador;
         }
         #endregion
 

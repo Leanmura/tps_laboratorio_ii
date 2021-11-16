@@ -7,32 +7,34 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class JugadorDeVoley: Persona
+    public class JugadorDeVoley: Persona, IId<JugadorDeVoley>
     {
         #region Atributos
-        private int idJugador;
+
         private double peso;
         private double altura;
         private EPosicion posicion;
-        private static int nextId;
+        //private static int nextId;
         #endregion
 
         #region Propiedades
-        public static int NextId
-        {
-            get { return JugadorDeVoley.nextId + 1; }
-        }
-        public int IdJugador
-        {
-            get
-            {
-                return this.idJugador;
-            }
-            set
-            {
-                this.idJugador = value;
-            }
-        }
+        //public static int NextId
+        //{
+        //    get { return JugadorDeVoley.nextId + 1; }
+        //}
+        //public int IdJugador
+        //{
+        //    get
+        //    {
+        //        return this.idJugador;
+        //    }
+        //    set
+        //    {
+        //        this.idJugador = value;
+        //    }
+        //}
+        public int Id { get;set;} // de la interfaz
+
         public double Peso
         {
             get
@@ -80,10 +82,10 @@ namespace Entidades
              DateTime fechaNacimiento, double peso, double altura, EPosicion posicion)
             : base(nombre, apellido, paisDeNacimiento, fechaNacimiento)
         {
-            this.IdJugador = Interlocked.Increment(ref JugadorDeVoley.nextId); ;
-            this.Altura = altura;
-            this.Peso = peso;
-            this.Posicion = posicion;
+            //this.idJugador = Interlocked.Increment(ref JugadorDeVoley.nextId); ;
+            this.altura = altura;
+            this.peso = peso;
+            this.posicion = posicion;
         }
 
         #endregion
@@ -127,6 +129,18 @@ namespace Entidades
             }
         }
 
+        public int GenerarId(List<JugadorDeVoley> lista)
+        {
+            int maxId = 0;
+            foreach (JugadorDeVoley item in lista)
+            {
+                if (item.Id > maxId)
+                {
+                    maxId = item.Id;
+                }
+            }
+            return maxId+1;
+        }
         #endregion
 
         #region Sobrecargas
@@ -139,7 +153,7 @@ namespace Entidades
         /// <returns>Si tienen el mismo ID devuelve True, sino devuelve False</returns>
         public static bool operator ==(JugadorDeVoley j1, JugadorDeVoley j2)
         {
-            return j1.IdJugador == j2.IdJugador;
+            return j1.Id == j2.Id;
         }
 
         public static bool operator !=(JugadorDeVoley j1, JugadorDeVoley j2)
@@ -165,7 +179,7 @@ namespace Entidades
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("ID: "+ this.IdJugador + ", " + base.ToString() + ", Peso: " + this.Peso + ", Altura: " + this.Altura + ", " + this.Posicion);
+            sb.Append("ID: "+ this.Id + ", " + base.ToString() + ", Peso: " + this.Peso + ", Altura: " + this.Altura + ", " + this.Posicion);
 
             return sb.ToString();
         }

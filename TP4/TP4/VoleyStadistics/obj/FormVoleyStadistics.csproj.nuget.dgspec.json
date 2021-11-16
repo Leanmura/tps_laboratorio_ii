@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\VoleyStadistics\\FormVoleyStadistics.csproj": {}
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\VoleyStadistics\\FormVoleyStadistics.csproj": {}
   },
   "projects": {
-    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj": {
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj",
+        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj",
         "projectName": "Entidades",
-        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj",
+        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj",
         "packagesPath": "C:\\Users\\Leandro\\.nuget\\packages\\",
-        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\obj\\",
+        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj": {
-                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj"
+              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj": {
+                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj"
               }
             }
           }
@@ -62,14 +62,14 @@
         }
       }
     },
-    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj": {
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj",
+        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj",
         "projectName": "Excepciones",
-        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj",
+        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj",
         "packagesPath": "C:\\Users\\Leandro\\.nuget\\packages\\",
-        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\obj\\",
+        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -116,14 +116,14 @@
         }
       }
     },
-    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj": {
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\IO\\IO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj",
+        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\IO\\IO.csproj",
         "projectName": "IO",
-        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj",
+        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\IO\\IO.csproj",
         "packagesPath": "C:\\Users\\Leandro\\.nuget\\packages\\",
-        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\obj\\",
+        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\IO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -140,8 +140,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj": {
-                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj"
+              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj": {
+                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj"
               }
             }
           }
@@ -174,14 +174,14 @@
         }
       }
     },
-    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\VoleyStadistics\\FormVoleyStadistics.csproj": {
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\VoleyStadistics\\FormVoleyStadistics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\VoleyStadistics\\FormVoleyStadistics.csproj",
+        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\VoleyStadistics\\FormVoleyStadistics.csproj",
         "projectName": "FormVoleyStadistics",
-        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\VoleyStadistics\\FormVoleyStadistics.csproj",
+        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\VoleyStadistics\\FormVoleyStadistics.csproj",
         "packagesPath": "C:\\Users\\Leandro\\.nuget\\packages\\",
-        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\VoleyStadistics\\obj\\",
+        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\VoleyStadistics\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -198,11 +198,11 @@
           "net5.0-windows7.0": {
             "targetAlias": "net5.0-windows",
             "projectReferences": {
-              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj": {
-                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj"
+              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj": {
+                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj"
               },
-              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj": {
-                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\IO\\IO.csproj"
+              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\IO\\IO.csproj": {
+                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\IO\\IO.csproj"
               }
             }
           }

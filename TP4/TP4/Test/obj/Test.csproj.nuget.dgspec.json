@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Test\\Test.csproj": {}
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Test\\Test.csproj": {}
   },
   "projects": {
-    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj": {
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj",
+        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj",
         "projectName": "Entidades",
-        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj",
+        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj",
         "packagesPath": "C:\\Users\\Leandro\\.nuget\\packages\\",
-        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\obj\\",
+        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj": {
-                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj"
+              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj": {
+                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj"
               }
             }
           }
@@ -62,14 +62,14 @@
         }
       }
     },
-    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj": {
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj",
+        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj",
         "projectName": "Excepciones",
-        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\Excepciones.csproj",
+        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\Excepciones.csproj",
         "packagesPath": "C:\\Users\\Leandro\\.nuget\\packages\\",
-        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Excepciones\\obj\\",
+        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Excepciones\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -116,14 +116,14 @@
         }
       }
     },
-    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Test\\Test.csproj": {
+    "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Test\\Test.csproj",
+        "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Test\\Test.csproj",
         "projectName": "Test",
-        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Test\\Test.csproj",
+        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Test\\Test.csproj",
         "packagesPath": "C:\\Users\\Leandro\\.nuget\\packages\\",
-        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Test\\obj\\",
+        "outputPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -140,8 +140,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj": {
-                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP3\\TP3\\Entidades\\Entidades.csproj"
+              "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj": {
+                "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP4\\TP4\\Entidades\\Entidades.csproj"
               }
             }
           }

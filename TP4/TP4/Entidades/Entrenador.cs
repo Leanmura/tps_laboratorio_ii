@@ -2,35 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Entrenador: Persona
+    public delegate void AsignarId(object sender, EventArgs e);
+
+    public class Entrenador : Persona, IId<Entrenador>
     {
+        public event AsignarId AsignarIdEvent;
+
         #region Atributos
         private bool isExJugador;
-        private int idEntrenador;
-        private static int nextId;
+        //private int idEntrenador;
+        //private static int nextId;
+
 
         #endregion
 
         #region Propiedades
-        public static int NextId
+        //public static int NextId
+        //{
+        //    get { return Entrenador.nextId + 1; }
+        //}
+        public int Id
         {
-            get { return Entrenador.nextId + 1; }
-        }
-        public int IdEntrenador
-        {
-            get
-            {
-                return this.idEntrenador;
-            }
-            set
-            {
-                this.idEntrenador = value;
-            }
+            get;
+            set;
         }
         public bool IsExJugador
         {
@@ -47,14 +44,16 @@ namespace Entidades
 
 
         #region Constructor
-        public Entrenador():base()
+        public Entrenador() : base()
         {
 
         }
-        public Entrenador(string nombre, string apellido, EPais paisDeNacimiento, DateTime fechaNacimiento)
+        public Entrenador(string nombre, string apellido, EPais paisDeNacimiento, DateTime fechaNacimiento, bool isExJugado)
              : base(nombre, apellido, paisDeNacimiento, fechaNacimiento)
         {
-            this.IdEntrenador = Interlocked.Increment(ref Entrenador.nextId); ;
+            this.isExJugador = isExJugado;
+            this.AsignarIdEvent(this, EventArgs.Empty);
+            //this.idEntrenador = Interlocked.Increment(ref Entrenador.nextId); ;
         }
 
         #endregion
@@ -69,7 +68,7 @@ namespace Entidades
         /// <returns>Si tienen el mismo ID devuelve True, sino devuelve False</returns>
         public static bool operator ==(Entrenador e1, Entrenador e2)
         {
-            return e1.IdEntrenador == e2.IdEntrenador;
+            return e1.Id == e2.Id;
         }
 
         public static bool operator !=(Entrenador e1, Entrenador e2)
@@ -96,7 +95,7 @@ namespace Entidades
         {
             StringBuilder sb = new StringBuilder();
             string exJugador;
-            if(this.IsExJugador)
+            if (this.IsExJugador)
             {
                 exJugador = "Si";
             }
@@ -104,7 +103,7 @@ namespace Entidades
             {
                 exJugador = "No";
             }
-            sb.Append("ID: " + this.IdEntrenador + ", " + base.ToString() + ", Exjugador: " + exJugador);
+            sb.Append("ID: " + this.Id + ", " + base.ToString() + ", Exjugador: " + exJugador);
 
             return sb.ToString();
         }
@@ -114,5 +113,20 @@ namespace Entidades
             return this.ToString();
         }
         #endregion
+
+        public int GenerarId(List<Entrenador> lista)
+        {
+            int maxId = 0;
+            foreach (Entrenador item in lista)
+            {
+                if (item.Id > maxId)
+                {
+                    maxId = item.Id;
+                }
+
+            }
+            return maxId + 1;
+        }
+
     }
 }
