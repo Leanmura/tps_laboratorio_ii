@@ -14,6 +14,8 @@ namespace FormVoleyStadistics
     public partial class FrmNuevoJugador : Form
     {
         private JugadorDeVoley nuevoJugador;
+        private JugadorDeVoley jugadorAModificar;
+
         private int id;
 
         public JugadorDeVoley NuevoJugador
@@ -24,46 +26,92 @@ namespace FormVoleyStadistics
             }
         }
 
-        public FrmNuevoJugador(int id)
+        public FrmNuevoJugador()
         {
             InitializeComponent();
+            cmbPosicion.Items.AddRange(Enum.GetNames(typeof(EPosicion)));
+            cmbNacionalidad.Items.AddRange(Enum.GetNames(typeof(EPais)));
+        }
+
+        public FrmNuevoJugador(int id):this()
+        {
+            this.btnCrear.Visible = true;
+            this.btnModificar.Visible = false;
             this.id = id;
+
+            cmbPosicion.SelectedIndex = 0;
+            cmbNacionalidad.SelectedIndex = 0;
+        }
+
+        public FrmNuevoJugador(JugadorDeVoley jugadorAModificar):this()
+        {
+            this.btnCrear.Visible = false;
+            this.btnModificar.Visible = true;
+            this.jugadorAModificar = jugadorAModificar;
+            this.id = this.jugadorAModificar.Id;
+            this.txtNombre.Text = this.jugadorAModificar.Nombre;
+            this.txtApellido.Text = this.jugadorAModificar.Apellido;
+            this.dateTimeFechaNacimiento.Value = this.jugadorAModificar.FechaNacimiento;
+            cmbNacionalidad.SelectedIndex = (int)this.jugadorAModificar.PaisDeNacimiento;
+            cmbPosicion.SelectedIndex = (int)this.jugadorAModificar.Posicion;
+            this.txtAltura.Text = this.jugadorAModificar.Altura.ToString();
+            this.txtPeso.Text = this.jugadorAModificar.Peso.ToString();
+
+        }
+
+        private void FrmNuevoJugador_Load(object sender, EventArgs e)
+        {
+            lblId.Text = "Jugador #" + this.id;
+
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
             try
             {
-                nuevoJugador = new JugadorDeVoley(this.txtNombre.Text, this.txtApellido.Text,
+                this.nuevoJugador = new JugadorDeVoley(this.txtNombre.Text, this.txtApellido.Text,
                     (EPais)this.cmbNacionalidad.SelectedIndex, this.dateTimeFechaNacimiento.Value,
                     double.Parse(this.txtPeso.Text), double.Parse(this.txtAltura.Text),
                     (EPosicion)this.cmbPosicion.SelectedIndex);
 
-                nuevoJugador.Id = this.id;
+                this.nuevoJugador.Id = this.id;
                 this.DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception)
             {
-                MessageBox.Show("Error. Faltan datos o hay datos mal ingresados.");
+                MessageBox.Show("Error. Faltan datos o hay datos mal ingresados.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void FrmNuevoJugador_Load(object sender, EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e)
         {
-            lblId.Text = "Jugador #" + this.id;
-            cmbPosicion.Items.AddRange(Enum.GetNames(typeof(EPosicion)));
-            cmbPosicion.SelectedIndex = 0;
-            cmbNacionalidad.Items.AddRange(Enum.GetNames(typeof(EPais)));
-            cmbNacionalidad.SelectedIndex = 0;
+            try
+            {
+                // this.jugadorAModificar.Nombre;
+
+                this.jugadorAModificar.Nombre = this.txtNombre.Text;
+                this.jugadorAModificar.Apellido = this.txtApellido.Text;
+                this.jugadorAModificar.PaisDeNacimiento = (EPais)this.cmbNacionalidad.SelectedIndex;
+                this.jugadorAModificar.FechaNacimiento = this.dateTimeFechaNacimiento.Value;
+                this.jugadorAModificar.Peso = double.Parse(this.txtPeso.Text);
+                this.jugadorAModificar.Altura = double.Parse(this.txtAltura.Text);
+                this.jugadorAModificar.Posicion = (EPosicion)this.cmbPosicion.SelectedIndex;
+                this.DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error. Faltan datos o hay datos mal ingresados.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
-
 
     }
 }

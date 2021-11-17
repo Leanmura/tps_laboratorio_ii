@@ -67,26 +67,50 @@ namespace FormVoleyStadistics
         {
             if (this.AbrirFrmNuevoJugador() == DialogResult.OK)
             {
-                this.lblMensaje.Visible = true;
-                this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-                this.lblMensaje.Text = "Jugador Creado Correctamente.";
-                this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
+                if(this.listaDeJugadores.Contains( this.frmNuevoJugador.NuevoJugador))
+                {
+                    MessageBox.Show("Error. Ya existe un jugador identico.");
+                }
+                else
+                {
+                    this.lblMensaje.Visible = true;
+                    this.lblMensaje.ForeColor = System.Drawing.Color.Black;
+                    this.lblMensaje.Text = "Jugador Creado Correctamente.";
+                    this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
+                    if(!JugadorDeVoley.Insert(this.frmNuevoJugador.NuevoJugador))
+                    {
+                        this.lblMensaje.ForeColor = System.Drawing.Color.Red;
+                        this.lblMensaje.Text = "Error no se pudo guardar en la base de datos."; // podria ser en otro hilo, dejandolo por 3 segundos
+                    }
+
+                }
                 this.RefrescarDataGrid();
 
             }
         }
 
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(this.UltimoArchivo))
+            try
             {
-                this.GuardarComo();
+                if (!File.Exists(this.UltimoArchivo))
+                {
+                    this.GuardarComo();
+                }
+                else
+                {
+                    this.Guardar();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.Guardar();
+                this.lblMensaje.ForeColor = System.Drawing.Color.Red;
+                this.lblMensaje.Text = ex.Message; //"ERROR: no se pudo guardar los datos.";
+                this.lblMensaje.Visible = true;
             }
+            this.lblMensaje.ForeColor = System.Drawing.Color.Black;
+            this.lblMensaje.Text = "Guardado correctamente."; 
+            this.lblMensaje.Visible = true;
             //this.GuardarDatos();
         }
 
@@ -115,7 +139,7 @@ namespace FormVoleyStadistics
                             listaAux = this.extJson.Leer(UltimoArchivo);// metodo de la clase generica
                             break;
                     }
-                    CopyWithNewId(listaAux);
+                    CopyWithNewId(listaAux); // COPIA LOS JUGADORES DE LA LISTA, QUE NO SEAN LA MISMA PERSONA, DEL ARCHIVO A LA BASE DE DATOS Y A LA LISTA DEL FORM
                     this.RefrescarDataGrid();
                 }
                 catch (Exception ex)
@@ -129,17 +153,22 @@ namespace FormVoleyStadistics
 
         /// <summary>
         /// Copia los jugadores de la lista pasada como parametro a la 
-        /// lista de jugadores del form asignandole un id valido, solo si son diferente persona.
+        /// lista de jugadores del form (y tamb a la base de datos) 
+        /// asignandole un id valido, solo si son diferente persona.
         /// </summary>
         /// <param name="listaAux"> lista a copiar</param>
         private void CopyWithNewId(List<JugadorDeVoley> listaAux)
         {
-            foreach (JugadorDeVoley item in listaAux) // esto podria hacerse en un hilo 
+            foreach (JugadorDeVoley item in listaAux) 
             {
                 if (!this.listaDeJugadores.Contains(item))
                 {
                     item.Id = item.GenerarId(this.listaDeJugadores); // le cambio el id a uno valido para la lista en la que lo voy a añadir
-                    this.listaDeJugadores.Add(item);
+                    if (!JugadorDeVoley.Insert(item)) // los añado a la base de datos
+                    {
+                        MessageBox.Show("Error no se pudo guardar en la base de datos.");
+                    }
+                    this.listaDeJugadores.Add(item); // los añado a la lista del formulario
                 }
             }
         }
@@ -151,21 +180,45 @@ namespace FormVoleyStadistics
                 this.btnModificar.Visible = true;
                 this.btnEliminar.Visible = true;
                 // Recuperar del data grid
-                this.jugadorModificar = (JugadorDeVoley)dataGridJugadores.CurrentRow.DataBoundItem;
+                // busco el indice de la lista, de la persona que es igual a la seleccionada en el datagrid
+                int indice = this.listaDeJugadores.IndexOf((JugadorDeVoley)dataGridJugadores.CurrentRow.DataBoundItem);
+                this.jugadorModificar = this.listaDeJugadores[indice]; // guardo la referencia de este jugador
                 // Modificar(auxJugador); // cuando clickee el boton modificar
             }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (this.AbrirFrmNuevoJugador() == DialogResult.OK)
+
+            if (this.AbrirFrmModificarJugador(this.jugadorModificar) == DialogResult.OK)
             {
                 this.lblMensaje.Visible = true;
                 this.lblMensaje.ForeColor = System.Drawing.Color.Black;
                 this.lblMensaje.Text = "Jugador Modificado Correctamente.";
+                if (!JugadorDeVoley.Update(this.jugadorModificar))
+                {
+                    MessageBox.Show("Error no se pudo actualizar la base de datos.");
+                }
                 // this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
                 this.RefrescarDataGrid();
 
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Esta seguro que quiere eliminar este jugador?", "Mensaje de confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.listaDeJugadores.Remove(this.jugadorModificar);
+                this.lblMensaje.Visible = true;
+                this.lblMensaje.ForeColor = System.Drawing.Color.Black;
+                this.lblMensaje.Text = "Jugador Borrado Correctamente.";
+                if (!JugadorDeVoley.Delete(this.jugadorModificar))
+                {
+                    MessageBox.Show("Error no se pudo actualizar la base de datos.");
+                }
+
+                this.RefrescarDataGrid();
             }
         }
 
@@ -175,6 +228,13 @@ namespace FormVoleyStadistics
             int id = new JugadorDeVoley().GenerarId(this.listaDeJugadores);
             this.lblMensaje.Visible = false;
             this.frmNuevoJugador = new FrmNuevoJugador(id);
+            return this.frmNuevoJugador.ShowDialog();
+        }
+
+        private DialogResult AbrirFrmModificarJugador(JugadorDeVoley jugadorAModificar)
+        {
+            this.lblMensaje.Visible = false;
+            this.frmNuevoJugador = new FrmNuevoJugador(jugadorAModificar);
             return this.frmNuevoJugador.ShowDialog();
         }
 
@@ -231,23 +291,14 @@ namespace FormVoleyStadistics
         {
             this.UltimoArchivo = SeleccionarUbicacionGuardado();
 
-            try
+            switch (Path.GetExtension(this.UltimoArchivo))
             {
-                switch (Path.GetExtension(this.UltimoArchivo))
-                {
-                    case ".json":
-                        this.extJson.GuardarComo(this.UltimoArchivo, this.listaDeJugadores);
-                        break;
-                    case ".xml":
-                        this.extXml.GuardarComo(this.UltimoArchivo, this.listaDeJugadores);
-                        break;
-                }
-            }
-            catch (Exception e)
-            {
-                this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                this.lblMensaje.Text = e.Message; //"ERROR: no se pudo guardar los datos.";
-                this.lblMensaje.Visible = true;
+                case ".json":
+                    this.extJson.GuardarComo(this.UltimoArchivo, this.listaDeJugadores);
+                    break;
+                case ".xml":
+                    this.extXml.GuardarComo(this.UltimoArchivo, this.listaDeJugadores);
+                    break;
             }
         }
 
@@ -256,23 +307,14 @@ namespace FormVoleyStadistics
         /// </summary>
         private void Guardar()
         {
-            try
+            switch (Path.GetExtension(this.UltimoArchivo))
             {
-                switch (Path.GetExtension(this.UltimoArchivo))
-                {
-                    case ".json":
-                        this.extJson.Guardar(this.UltimoArchivo, this.listaDeJugadores);
-                        break;
-                    case ".xml":
-                        this.extXml.Guardar(this.UltimoArchivo, this.listaDeJugadores);
-                        break;
-                }
-            }
-            catch (Exception e)
-            {
-                this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                this.lblMensaje.Text = e.Message; //"ERROR: no se pudo guardar los datos.";
-                this.lblMensaje.Visible = true;
+                case ".json":
+                    this.extJson.Guardar(this.UltimoArchivo, this.listaDeJugadores);
+                    break;
+                case ".xml":
+                    this.extXml.Guardar(this.UltimoArchivo, this.listaDeJugadores);
+                    break;
             }
         }
 
@@ -286,8 +328,7 @@ namespace FormVoleyStadistics
             return retorno;
         }
 
+
         #endregion
-
-
     }
 }

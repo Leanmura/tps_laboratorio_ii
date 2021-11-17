@@ -49,7 +49,7 @@ namespace IO
             {
                 using (StreamReader streamReader = new StreamReader(ruta))
                 {
-                    retorno =  streamReader.ReadToEnd();
+                    retorno = streamReader.ReadToEnd();
                 }
             }
 

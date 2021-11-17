@@ -15,7 +15,7 @@ namespace UnitTest
 
             // Arrange -> Simulacion de los datos
             JugadorDeVoley jugador = new JugadorDeVoley("Manuel", "Larie", EPais.Francia, DateTime.Parse("28/02/1990"), 67, 1.87, EPosicion.Libero) ;
-            Entrenador entrenador = new Entrenador("Jose", "Deus", EPais.Brasil, DateTime.Parse("18/08/2000"));
+            Entrenador entrenador = new Entrenador("Jose", "Deus", EPais.Brasil, DateTime.Parse("18/08/2000"), true);
             Club club = new Club("Madrid", entrenador, EPais.Argentina, "Metro");
 
             // Act -> llamada a la funcionalidad a testiar
@@ -34,7 +34,7 @@ namespace UnitTest
 
             // Arrange -> Simulacion de los datos
             JugadorDeVoley jugador = null;
-            Entrenador entrenador = new Entrenador("Jose", "Deus", EPais.Brasil, DateTime.Parse("18/08/2000"));
+            Entrenador entrenador = new Entrenador("Jose", "Deus", EPais.Brasil, DateTime.Parse("18/08/2000"), true);
             Club club = new Club("Madrid", entrenador, EPais.Argentina, "Metro");
 
             // Act -> llamada a la funcionalidad a testiar
@@ -49,7 +49,7 @@ namespace UnitTest
 
             // Arrange -> Simulacion de los datos
             JugadorDeVoley jugador = new JugadorDeVoley("Manuel", "Larie", EPais.Francia, DateTime.Parse("28/02/1990"), 67, 1.87, EPosicion.Libero);
-            Entrenador entrenador = new Entrenador("Jose", "Deus", EPais.Brasil, DateTime.Parse("18/08/2000"));
+            Entrenador entrenador = new Entrenador("Jose", "Deus", EPais.Brasil, DateTime.Parse("18/08/2000"), true);
             Club club = new Club("Madrid", entrenador, EPais.Argentina, "Metro");
             club.AgregarJugador(jugador);
 

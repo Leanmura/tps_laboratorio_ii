@@ -174,14 +174,14 @@ namespace Entidades
                 Persona.command.Parameters.Clear();
                 Persona.command.Parameters.AddWithValue("@nombre", item.Nombre);
                 Persona.command.Parameters.AddWithValue("@apellido", item.Apellido);
-                Persona.command.Parameters.AddWithValue("@pais", item.PaisDeNacimiento);
+                Persona.command.Parameters.AddWithValue("@pais", (int)item.PaisDeNacimiento);
                 Persona.command.Parameters.AddWithValue("@fecha", item.FechaNacimiento);
-                Persona.command.Parameters.AddWithValue("@posicion", item.Posicion);
+                Persona.command.Parameters.AddWithValue("@posicion", (int)item.Posicion);
                 Persona.command.Parameters.AddWithValue("@peso", item.Peso);
                 Persona.command.Parameters.AddWithValue("@altura", item.Altura);
 
-                Persona.command.CommandText = "INSERT INTO dbo.JugadorDeVoley" +
-                    "( NOMBRE, APELLIDO, PAIS, FECHA_NACIMIENTO, PESO, ALTURA, POSICION)" +
+                Persona.command.CommandText = "INSERT INTO JUGADOR_DE_VOLEY" +
+                    "( NOMBRE, APELLIDO, ID_PAIS, FECHA_NACIMIENTO, PESO, ALTURA, ID_POSICION)" +
                     " VALUES(@nombre, @apellido, @pais, @fecha, @peso, @altura, @posicion)"; // hay que poner todos los campos que no aceptan NULL
                 filasAfectadas = Persona.command.ExecuteNonQuery();
                 if (filasAfectadas == 0)
@@ -213,15 +213,15 @@ namespace Entidades
                 Persona.command.Parameters.AddWithValue("@id", item.Id); // necesitamos el id para ver cual actualizamos
                 Persona.command.Parameters.AddWithValue("@nombre", item.Nombre);
                 Persona.command.Parameters.AddWithValue("@apellido", item.Apellido);
-                Persona.command.Parameters.AddWithValue("@pais", item.PaisDeNacimiento);
+                Persona.command.Parameters.AddWithValue("@pais", (int)item.PaisDeNacimiento);
                 Persona.command.Parameters.AddWithValue("@fecha", item.FechaNacimiento);
-                Persona.command.Parameters.AddWithValue("@posicion", item.Posicion);
+                Persona.command.Parameters.AddWithValue("@posicion", (int)item.Posicion);
                 Persona.command.Parameters.AddWithValue("@peso", item.Peso);
                 Persona.command.Parameters.AddWithValue("@altura", item.Altura);
 
                 Persona.command.CommandText = "UPDATE dbo.JUGADOR_DE_VOLEY " +
-                    "SET NOMBRE = @nombre, APELLIDO = @apellido,  PAIS = @pais, FECHA_NACIMIENTO = @fecha, " +
-                    "PESO = @peso, ALTURA = @altura, POSICION = @posicion" + // no hace falta cambiar todos los datos, solo los que modificamos
+                    "SET NOMBRE = @nombre, APELLIDO = @apellido, ID_PAIS = @pais, FECHA_NACIMIENTO = @fecha, " +
+                    "PESO = @peso, ALTURA = @altura, ID_POSICION = @posicion " + // no hace falta cambiar todos los datos, solo los que modificamos
                     "WHERE ID= @id";
                 filasAfectadas = Persona.command.ExecuteNonQuery();
                 if (filasAfectadas == 0)
@@ -249,7 +249,7 @@ namespace Entidades
                 Persona.connection.Open();
                 Persona.command.Parameters.Clear();
                 Persona.command.Parameters.AddWithValue("@id", item.Id);
-                Persona.command.CommandText = "DELETE FROM dbo.JugadorDeVoley WHERE id = @id";
+                Persona.command.CommandText = "DELETE FROM JUGADOR_DE_VOLEY WHERE ID = @id";
                 filasAfectadas = Persona.command.ExecuteNonQuery();
                 if (filasAfectadas == 0)
                 {

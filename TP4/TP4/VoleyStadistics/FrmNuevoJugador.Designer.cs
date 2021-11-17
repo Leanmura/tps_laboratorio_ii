@@ -46,6 +46,7 @@ namespace FormVoleyStadistics
             this.lblApellido = new System.Windows.Forms.Label();
             this.lblPeso = new System.Windows.Forms.Label();
             this.lblAltura = new System.Windows.Forms.Label();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtNombre
@@ -202,11 +203,22 @@ namespace FormVoleyStadistics
             this.lblAltura.TabIndex = 16;
             this.lblAltura.Text = "Altura (m)";
             // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(10, 156);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(187, 33);
+            this.btnModificar.TabIndex = 17;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
             // FrmNuevoJugador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(393, 201);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.lblAltura);
             this.Controls.Add(this.lblPeso);
             this.Controls.Add(this.lblApellido);
@@ -253,5 +265,6 @@ namespace FormVoleyStadistics
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.Label lblPeso;
         private System.Windows.Forms.Label lblAltura;
+        private System.Windows.Forms.Button btnModificar;
     }
 }

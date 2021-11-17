@@ -44,7 +44,7 @@ namespace Entidades
              : base(nombre, apellido, paisDeNacimiento, fechaNacimiento)
         {
             this.isExJugador = isExJugado;
-            this.AsignarIdEvent(this, EventArgs.Empty);
+            //this.AsignarIdEvent(this, EventArgs.Empty);
             //this.idEntrenador = Interlocked.Increment(ref Entrenador.nextId); ;
         }
 
