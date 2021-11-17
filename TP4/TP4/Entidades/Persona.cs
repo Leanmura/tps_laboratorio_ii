@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Text;
 using System.Threading;
 
@@ -10,7 +13,6 @@ namespace Entidades
         private string apellido;
         private EPais paisDeNacimiento;
         private DateTime fechaNacimiento; // DateTime.Parse("DD/MM/YYYY")
-
 
         #region Propiedades
         public string Nombre
@@ -43,6 +45,18 @@ namespace Entidades
         #endregion
 
         #region Constructores
+        static Persona()
+        {
+            // cambiar el nombre de la tabla
+            Persona.connectionString = @"Server=localhost;Database=TP4_DB;Trusted_Connection=True;";
+            //Persona.connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=EMPRESA_DB; Integrated Security=True;";
+            Persona.connection = new SqlConnection(Persona.connectionString);
+            Persona.command = new SqlCommand();
+            Persona.command.Connection = Persona.connection;
+            Persona.command.CommandType = CommandType.Text;
+
+        }
+
         protected Persona()
         {
 
@@ -58,6 +72,7 @@ namespace Entidades
 
 
         #endregion
+
         #region Metodos
         /// <summary>
         /// Muestra todos los datos de la Persona
@@ -74,38 +89,38 @@ namespace Entidades
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append( "Nomnbre: " + this.Nombre + ", Apellido: " + this.Apellido + 
+            sb.Append( "Nombre: " + this.Nombre + ", Apellido: " + this.Apellido + 
                 ", Pais de nacimeinto: " + this.PaisDeNacimiento + ", Fecha de Naicimiento:" +
                 this.FechaNacimiento.ToShortDateString());
 
             return sb.ToString();
         }
 
-        ///// <summary>
-        ///// Compara por el ID de las personas 
-        ///// </summary>
-        ///// <param name="p1"> Primera persona </param>
-        ///// <param name="p2"> Segunda persona </param>
-        ///// <returns>Si tienen el mismo ID devuelve True, sino devuelve False</returns>
-        //public static bool operator ==(Persona p1, Persona p2)
-        //{
-        //    return p1.Id == p2.Id;
-        //}
+        /// <summary>
+        /// Una persona es igual a otra si todos sus atributos son iguales
+        /// </summary>
+        /// <param name="p1"> Primera persona </param>
+        /// <param name="p2"> Segunda persona </param>
+        /// <returns>si son identicas devuelve True, sino devuelve False</returns>
+        public static bool operator ==(Persona p1, Persona p2)
+        {
+            return p1.Nombre == p2.Nombre && p1.Apellido == p2.Apellido && p1.PaisDeNacimiento == p2.PaisDeNacimiento && p1.FechaNacimiento == p2.FechaNacimiento;
+        }
 
-        //public static bool operator !=(Persona p1, Persona p2)
-        //{
-        //    return !(p1 == p2);
-        //}
+        public static bool operator !=(Persona p1, Persona p2)
+        {
+            return !(p1 == p2);
+        }
 
-        //public override bool Equals(object obj)
-        //{
-        //    bool retorno = false;
-        //    if(obj is Persona)
-        //    {
-        //        retorno = (Persona)obj == this;
-        //    }
-        //    return retorno;
-        //}
+        public override bool Equals(object obj)
+        {
+            bool retorno = false;
+            if (obj is Persona)
+            {
+                retorno = (Persona)obj == this;
+            }
+            return retorno;
+        }
 
         //public override int GetHashCode()
         //{
@@ -120,9 +135,10 @@ namespace Entidades
         /// <returns> Palabra valida formateada </returns>
         private static string ValidarSustPropio(string value)
         {
+            value = value.ToLower().Trim();
             if (string.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("La palabra contiene simbolos, espacios o esta vacia.");
+                throw new ArgumentException("La palabra contiene simbolos, espacios o esta vacia."); // cambiar por eventos
             }
             foreach (char item in value)
             {
@@ -146,6 +162,49 @@ namespace Entidades
                 throw new ArgumentOutOfRangeException();
             }
         }
+
+        #region SQL
+
+        #region Atributos
+
+        protected static string connectionString;
+        protected static SqlConnection connection;
+        protected static SqlCommand command;
+        protected static SqlDataReader dataReader;
+        #endregion
+
+        #region MétodosSQL
+
+        public static bool ConnectionTest()
+        {
+            bool rta = true;
+
+            try
+            {
+                Persona.connection.Open();
+            }
+            catch (Exception)
+            {
+                rta = false;
+            }
+            finally
+            {
+                Persona.CloseConnection();
+            }
+
+            return rta;
+        }
+
+        protected static void CloseConnection()
+        {
+            if (Persona.connection.State == ConnectionState.Open)
+            {
+                Persona.connection.Close();
+            }
+        }
+        #endregion
+
+        #endregion
     }
 
 

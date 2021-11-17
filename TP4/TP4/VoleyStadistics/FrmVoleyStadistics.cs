@@ -21,7 +21,9 @@ namespace FormVoleyStadistics
         {
             InitializeComponent();
             this.frmJugadores = new FrmJugadores();//listaDeJugadores);
-            this.frmJugadores.listaDeJugadores = new List<JugadorDeVoley>();
+            
+            this.frmJugadores.listaDeJugadores = JugadorDeVoley.ReadAll();//new List<JugadorDeVoley>();
+
         }
 
 

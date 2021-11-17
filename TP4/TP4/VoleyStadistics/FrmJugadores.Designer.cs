@@ -63,7 +63,7 @@ namespace FormVoleyStadistics
             this.dataGridJugadores.RowHeadersVisible = false;
             this.dataGridJugadores.RowTemplate.Height = 25;
             this.dataGridJugadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridJugadores.Size = new System.Drawing.Size(643, 285);
+            this.dataGridJugadores.Size = new System.Drawing.Size(664, 285);
             this.dataGridJugadores.TabIndex = 0;
             this.dataGridJugadores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridJugadores_CellClick);
             // 
@@ -79,17 +79,18 @@ namespace FormVoleyStadistics
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(494, 303);
+            this.btnModificar.Location = new System.Drawing.Point(515, 302);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(161, 29);
             this.btnModificar.TabIndex = 2;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Visible = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(494, 338);
+            this.btnEliminar.Location = new System.Drawing.Point(515, 337);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(161, 29);
             this.btnEliminar.TabIndex = 3;
@@ -133,7 +134,7 @@ namespace FormVoleyStadistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 386);
+            this.ClientSize = new System.Drawing.Size(688, 386);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.btnGuardar);

@@ -1,12 +1,9 @@
 ﻿using Entidades;
+using IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Serialization;
-using IO;
 
 namespace FormVoleyStadistics
 {
@@ -22,7 +19,7 @@ namespace FormVoleyStadistics
         private string ultimoArchivo;
         private ExtXml<List<JugadorDeVoley>> extXml; // se crea atributo de clase generica
         private ExtJson<List<JugadorDeVoley>> extJson;
-
+        private JugadorDeVoley jugadorModificar;
 
         private string UltimoArchivo
         {
@@ -79,17 +76,6 @@ namespace FormVoleyStadistics
             }
         }
 
-        private void dataGridJugadores_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1) // hago visible los botones de modificar y eliminar
-            {
-                this.btnModificar.Visible = true;
-                this.btnEliminar.Visible = true;
-                // Recuperar del data grid
-                // JugadorDeVoley auxJugador = (JugadorDeVoley)dataGridJugadores.CurrentRow.DataBoundItem;
-                // Modificar(auxJugador); // cuando clickee el boton modificar
-            }
-        }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -107,26 +93,29 @@ namespace FormVoleyStadistics
         private void btnCargar_Click(object sender, EventArgs e)
         {
             DialogResult confirmacion = DialogResult.Yes;
-            if (this.listaDeJugadores.Count > 0)
-            {
-               confirmacion =  MessageBox.Show("Si carga un nuevo archivo se perderan los datos actuales. \nDesea continuar? ", "Confirmacion" ,MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            }
+            //if (this.listaDeJugadores.Count > 0)
+            //{
+            //    confirmacion = MessageBox.Show("Solo se cargaran los jugadores con distinto ID, nombre, apellido y nacionalidad", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //}
             if (confirmacion == DialogResult.Yes && this.openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 this.ultimoArchivo = this.openFileDialog.FileName;
 
                 try
                 {
+                    List<JugadorDeVoley> listaAux = new List<JugadorDeVoley>();
                     switch (Path.GetExtension(this.UltimoArchivo))
                     {
                         case ".xml":
-                            this.listaDeJugadores = this.extXml.Leer(UltimoArchivo); // metodo de la clase generica
+                            listaAux = this.extXml.Leer(UltimoArchivo);// metodo de la clase generica
+
 
                             break;
                         case ".json":
-                            this.listaDeJugadores = this.extJson.Leer(UltimoArchivo);
+                            listaAux = this.extJson.Leer(UltimoArchivo);// metodo de la clase generica
                             break;
                     }
+                    CopyWithNewId(listaAux);
                     this.RefrescarDataGrid();
                 }
                 catch (Exception ex)
@@ -135,6 +124,48 @@ namespace FormVoleyStadistics
                     this.lblMensaje.Text = this.lblMensaje.Text = ex.Message; //"ERROR: no se pudo cargar los datos.";
                     this.lblMensaje.Visible = true;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Copia los jugadores de la lista pasada como parametro a la 
+        /// lista de jugadores del form asignandole un id valido, solo si son diferente persona.
+        /// </summary>
+        /// <param name="listaAux"> lista a copiar</param>
+        private void CopyWithNewId(List<JugadorDeVoley> listaAux)
+        {
+            foreach (JugadorDeVoley item in listaAux) // esto podria hacerse en un hilo 
+            {
+                if (!this.listaDeJugadores.Contains(item))
+                {
+                    item.Id = item.GenerarId(this.listaDeJugadores); // le cambio el id a uno valido para la lista en la que lo voy a añadir
+                    this.listaDeJugadores.Add(item);
+                }
+            }
+        }
+
+        private void dataGridJugadores_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1) // hago visible los botones de modificar y eliminar
+            {
+                this.btnModificar.Visible = true;
+                this.btnEliminar.Visible = true;
+                // Recuperar del data grid
+                this.jugadorModificar = (JugadorDeVoley)dataGridJugadores.CurrentRow.DataBoundItem;
+                // Modificar(auxJugador); // cuando clickee el boton modificar
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (this.AbrirFrmNuevoJugador() == DialogResult.OK)
+            {
+                this.lblMensaje.Visible = true;
+                this.lblMensaje.ForeColor = System.Drawing.Color.Black;
+                this.lblMensaje.Text = "Jugador Modificado Correctamente.";
+                // this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
+                this.RefrescarDataGrid();
+
             }
         }
 
@@ -196,8 +227,8 @@ namespace FormVoleyStadistics
         /// <summary>
         /// Guarda un archivo permitiendo escoger el lugar y nombre con el que se guardara.
         /// </summary>
-         private void GuardarComo()
-         {
+        private void GuardarComo()
+        {
             this.UltimoArchivo = SeleccionarUbicacionGuardado();
 
             try
@@ -254,6 +285,7 @@ namespace FormVoleyStadistics
             }
             return retorno;
         }
+
         #endregion
 
 
