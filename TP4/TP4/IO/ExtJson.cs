@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.Json;
 
 namespace IO
@@ -41,16 +42,17 @@ namespace IO
 
         public T Leer(string ruta)
         {
+            T retorno = null;
             if (ValidarArchivo(ruta) && ValidarExtension(ruta))
             {
                 using (StreamReader streamReader = new StreamReader(ruta))
                 {
                     string json = streamReader.ReadToEnd(); 
-                    return JsonSerializer.Deserialize<T>(json);
+                        retorno = JsonSerializer.Deserialize<T>(json);
                 }
             }
 
-            return null;
+            return retorno;
         }
     }
 }

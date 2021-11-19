@@ -113,9 +113,8 @@ namespace Entidades
             }
         }
 
-        public int GenerarId(List<JugadorDeVoley> lista)
+        public int GenerarId(List<JugadorDeVoley> lista, int maxId)
         {
-            int maxId = 0;
             foreach (JugadorDeVoley item in lista)
             {
                 if (item.Id > maxId)

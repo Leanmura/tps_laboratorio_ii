@@ -69,12 +69,17 @@ namespace FormVoleyStadistics
         {
             try
             {
-                this.nuevoJugador = new JugadorDeVoley(this.txtNombre.Text, this.txtApellido.Text,
-                    (EPais)this.cmbNacionalidad.SelectedIndex, this.dateTimeFechaNacimiento.Value,
-                    double.Parse(this.txtPeso.Text), double.Parse(this.txtAltura.Text),
-                    (EPosicion)this.cmbPosicion.SelectedIndex);
+                this.nuevoJugador = new JugadorDeVoley();
 
                 this.nuevoJugador.Id = this.id;
+
+                this.nuevoJugador.Nombre = this.txtNombre.Text;
+                this.nuevoJugador.Apellido = this.txtApellido.Text;
+                this.nuevoJugador.PaisDeNacimiento = (EPais)this.cmbNacionalidad.SelectedIndex;
+                this.nuevoJugador.FechaNacimiento = this.dateTimeFechaNacimiento.Value;
+                this.nuevoJugador.Peso = double.Parse(this.txtPeso.Text);
+                this.nuevoJugador.Altura = double.Parse(this.txtAltura.Text);
+                this.nuevoJugador.Posicion = (EPosicion)this.cmbPosicion.SelectedIndex;
                 this.DialogResult = DialogResult.OK;
                 Close();
             }

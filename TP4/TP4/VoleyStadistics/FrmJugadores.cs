@@ -20,6 +20,7 @@ namespace FormVoleyStadistics
         private ExtXml<List<JugadorDeVoley>> extXml; // se crea atributo de clase generica
         private ExtJson<List<JugadorDeVoley>> extJson;
         private JugadorDeVoley jugadorModificar;
+        private static int maxId;
 
         private string UltimoArchivo
         {
@@ -36,6 +37,8 @@ namespace FormVoleyStadistics
             }
         }
 
+        public static int MaxId { get => maxId; set => maxId = value; }
+
         static FrmJugadores()
         {
             string nombreArchivo = "listaDeJugadores.xml";
@@ -46,6 +49,7 @@ namespace FormVoleyStadistics
         public FrmJugadores()//List<JugadorDeVoley> listaDeJugadores)
         {
             InitializeComponent();
+            
             //this.listaDeJugadores = listaDeJugadores;
             //this.frmNuevoJugador = new FrmNuevoJugador();
             this.openFileDialog = new OpenFileDialog();
@@ -54,12 +58,16 @@ namespace FormVoleyStadistics
             this.saveFileDialog.Filter = "Archivo XML|*.xml|Archivo JSON|*.json";
             this.extXml = new ExtXml<List<JugadorDeVoley>>(); // se instacia la clase generica
             this.extJson = new ExtJson<List<JugadorDeVoley>>();
-
         }
 
         private void FrmJugadores_Load(object sender, EventArgs e)
         {
+            if(FrmJugadores.MaxId == 0)
+            {
+                FrmJugadores.MaxId = new JugadorDeVoley().GenerarId(this.listaDeJugadores, 0);
+            }
             this.RefrescarDataGrid();
+
             //this.dataGridJugadores.DataSource = this.listaDeJugadores;
         }
 
@@ -76,6 +84,7 @@ namespace FormVoleyStadistics
                     this.lblMensaje.Visible = true;
                     this.lblMensaje.ForeColor = System.Drawing.Color.Black;
                     this.lblMensaje.Text = "Jugador Creado Correctamente.";
+                    FrmJugadores.MaxId = this.frmNuevoJugador.NuevoJugador.Id+1;
                     this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
                     if(!JugadorDeVoley.Insert(this.frmNuevoJugador.NuevoJugador))
                     {
@@ -136,7 +145,7 @@ namespace FormVoleyStadistics
 
                             break;
                         case ".json":
-                            listaAux = this.extJson.Leer(UltimoArchivo);// metodo de la clase generica
+                            listaAux = this.extJson.Leer(this.UltimoArchivo);// metodo de la clase generica
                             break;
                     }
                     CopyWithNewId(listaAux); // COPIA LOS JUGADORES DE LA LISTA, QUE NO SEAN LA MISMA PERSONA, DEL ARCHIVO A LA BASE DE DATOS Y A LA LISTA DEL FORM
@@ -151,27 +160,6 @@ namespace FormVoleyStadistics
             }
         }
 
-        /// <summary>
-        /// Copia los jugadores de la lista pasada como parametro a la 
-        /// lista de jugadores del form (y tamb a la base de datos) 
-        /// asignandole un id valido, solo si son diferente persona.
-        /// </summary>
-        /// <param name="listaAux"> lista a copiar</param>
-        private void CopyWithNewId(List<JugadorDeVoley> listaAux)
-        {
-            foreach (JugadorDeVoley item in listaAux) 
-            {
-                if (!this.listaDeJugadores.Contains(item))
-                {
-                    item.Id = item.GenerarId(this.listaDeJugadores); // le cambio el id a uno valido para la lista en la que lo voy a añadir
-                    if (!JugadorDeVoley.Insert(item)) // los añado a la base de datos
-                    {
-                        MessageBox.Show("Error no se pudo guardar en la base de datos.");
-                    }
-                    this.listaDeJugadores.Add(item); // los añado a la lista del formulario
-                }
-            }
-        }
 
         private void dataGridJugadores_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -223,20 +211,43 @@ namespace FormVoleyStadistics
         }
 
         #region Metodos privados
+        /// <summary>
+        /// Copia los jugadores de la lista pasada como parametro a la 
+        /// lista de jugadores del form (y tamb a la base de datos) 
+        /// asignandole un id valido, solo si son diferente persona.
+        /// </summary>
+        /// <param name="listaAux"> lista a copiar</param>
+        private void CopyWithNewId(List<JugadorDeVoley> listaAux)
+        {
+            foreach (JugadorDeVoley item in listaAux) 
+            {
+                if (!this.listaDeJugadores.Contains(item))
+                {
+                    item.Id = item.GenerarId(this.listaDeJugadores, FrmJugadores.MaxId); // le cambio el id a uno valido para la lista en la que lo voy a añadir
+                    if (!JugadorDeVoley.Insert(item)) // los añado a la base de datos
+                    {
+                        MessageBox.Show("Error no se pudo guardar en la base de datos.");
+                    }
+                    this.listaDeJugadores.Add(item); // los añado a la lista del formulario
+                }
+            }
+        }
+
         private DialogResult AbrirFrmNuevoJugador()
         {
-            int id = new JugadorDeVoley().GenerarId(this.listaDeJugadores);
+            int id = FrmJugadores.MaxId; //new JugadorDeVoley().GenerarId(this.listaDeJugadores, FrmJugadores.maxId);
             this.lblMensaje.Visible = false;
             this.frmNuevoJugador = new FrmNuevoJugador(id);
             return this.frmNuevoJugador.ShowDialog();
         }
 
+        // encapsulo la instanciacion de FrmNuevoJugador(jugadorAModificar), para no confundir. creo que deberia hacer un nuevo form que herede de este o cambiarle el nombre
         private DialogResult AbrirFrmModificarJugador(JugadorDeVoley jugadorAModificar)
         {
             this.lblMensaje.Visible = false;
             this.frmNuevoJugador = new FrmNuevoJugador(jugadorAModificar);
             return this.frmNuevoJugador.ShowDialog();
-        }
+        } 
 
         /// <summary>
         /// Actualiza el data grid solo si la lista de jugadores tiene algo 
@@ -247,6 +258,15 @@ namespace FormVoleyStadistics
             {
                 this.dataGridJugadores.DataSource = null;
                 this.dataGridJugadores.DataSource = this.listaDeJugadores;
+                this.dataGridJugadores.Columns["Nombre"].DisplayIndex = 1;
+                this.dataGridJugadores.Columns["Apellido"].DisplayIndex = 2;
+                // this.dataGridJugadores.Columns["Id"].Width = 50;
+                this.dataGridJugadores.Columns["Id"].HeaderText = "ID";
+                // this.dataGridJugadores.Columns["Peso"].Width = 50;
+                // this.dataGridJugadores.Columns["Altura"].Width = 50;
+                // this.dataGridJugadores.Columns["FechaNacimiento"].Width = 140;
+                this.dataGridJugadores.Columns["FechaNacimiento"].HeaderText = "Fecha de nacimiento";
+                this.dataGridJugadores.Columns["PaisDeNacimiento"].HeaderText = "Pais";
             }
         }
 

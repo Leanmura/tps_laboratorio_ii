@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 
+// si tira error con la modificacion de la base de datos, reiniciar el programa para actualizar ids
+
 namespace FormVoleyStadistics
 {
     public partial class FrmVoleyStadistics : Form
@@ -16,12 +18,17 @@ namespace FormVoleyStadistics
         private FrmJugadores frmJugadores;
         public List<JugadorDeVoley> listaDeJugadores;
         public List<Entrenador> listaEntrenadores;
+        public static int maxId;
 
-        public FrmVoleyStadistics()
+        static FrmVoleyStadistics()
+        {
+           FrmVoleyStadistics.maxId = 0;
+         }
+
+    public FrmVoleyStadistics()
         {
             InitializeComponent();
             this.frmJugadores = new FrmJugadores();//listaDeJugadores);
-            
             this.frmJugadores.listaDeJugadores = JugadorDeVoley.ReadAll();//new List<JugadorDeVoley>();
 
         }

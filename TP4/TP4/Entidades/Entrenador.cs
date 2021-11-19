@@ -108,9 +108,8 @@ namespace Entidades
 
         #region Metodos
 
-        public int GenerarId(List<Entrenador> lista)
+        public int GenerarId(List<Entrenador> lista, int maxId)
         {
-            int maxId = 0;
             foreach (Entrenador item in lista)
             {
                 if (item.Id > maxId)

@@ -13,6 +13,6 @@ namespace Entidades
             get;
             set;
         }
-        int GenerarId(List<T> lista);
+        int GenerarId(List<T> lista, int maxId);
     }
 }
