@@ -8,7 +8,12 @@
       "restore": {
         "projectUniqueName": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP1\\Entiades\\Entidades.csproj",
         "projectName": "Entidades",
-        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP1\\Entiades\\Entidades.csproj"
+        "projectPath": "E:\\Tecnicatura en programacion\\2Cuatri\\Programacion II\\TPs\\TP1\\Entiades\\Entidades.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
       },
       "frameworks": {
         "net472": {}
@@ -71,7 +76,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
