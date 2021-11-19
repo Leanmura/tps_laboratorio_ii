@@ -31,7 +31,6 @@ namespace FormVoleyStadistics
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVoleyStadistics));
             this.btnJugadores = new System.Windows.Forms.Button();
-            this.btnEntrenadores = new System.Windows.Forms.Button();
             this.btnEstadisticas = new System.Windows.Forms.Button();
             this.btnEquiposNacionales = new System.Windows.Forms.Button();
             this.btnClubes = new System.Windows.Forms.Button();
@@ -48,21 +47,10 @@ namespace FormVoleyStadistics
             this.btnJugadores.UseVisualStyleBackColor = true;
             this.btnJugadores.Click += new System.EventHandler(this.btnJugadores_Click);
             // 
-            // btnEntrenadores
-            // 
-            this.btnEntrenadores.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEntrenadores.Location = new System.Drawing.Point(12, 89);
-            this.btnEntrenadores.Name = "btnEntrenadores";
-            this.btnEntrenadores.Size = new System.Drawing.Size(281, 61);
-            this.btnEntrenadores.TabIndex = 1;
-            this.btnEntrenadores.Text = "Entrenadores";
-            this.btnEntrenadores.UseVisualStyleBackColor = true;
-            this.btnEntrenadores.Click += new System.EventHandler(this.btnEntrenadores_Click);
-            // 
             // btnEstadisticas
             // 
             this.btnEstadisticas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEstadisticas.Location = new System.Drawing.Point(12, 321);
+            this.btnEstadisticas.Location = new System.Drawing.Point(12, 213);
             this.btnEstadisticas.Name = "btnEstadisticas";
             this.btnEstadisticas.Size = new System.Drawing.Size(281, 61);
             this.btnEstadisticas.TabIndex = 2;
@@ -72,7 +60,7 @@ namespace FormVoleyStadistics
             // btnEquiposNacionales
             // 
             this.btnEquiposNacionales.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEquiposNacionales.Location = new System.Drawing.Point(12, 166);
+            this.btnEquiposNacionales.Location = new System.Drawing.Point(12, 79);
             this.btnEquiposNacionales.Name = "btnEquiposNacionales";
             this.btnEquiposNacionales.Size = new System.Drawing.Size(281, 61);
             this.btnEquiposNacionales.TabIndex = 3;
@@ -82,7 +70,7 @@ namespace FormVoleyStadistics
             // btnClubes
             // 
             this.btnClubes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnClubes.Location = new System.Drawing.Point(12, 242);
+            this.btnClubes.Location = new System.Drawing.Point(12, 146);
             this.btnClubes.Name = "btnClubes";
             this.btnClubes.Size = new System.Drawing.Size(281, 61);
             this.btnClubes.TabIndex = 4;
@@ -93,11 +81,10 @@ namespace FormVoleyStadistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(305, 394);
+            this.ClientSize = new System.Drawing.Size(305, 282);
             this.Controls.Add(this.btnClubes);
             this.Controls.Add(this.btnEquiposNacionales);
             this.Controls.Add(this.btnEstadisticas);
-            this.Controls.Add(this.btnEntrenadores);
             this.Controls.Add(this.btnJugadores);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -112,7 +99,6 @@ namespace FormVoleyStadistics
         #endregion
 
         private System.Windows.Forms.Button btnJugadores;
-        private System.Windows.Forms.Button btnEntrenadores;
         private System.Windows.Forms.Button btnEstadisticas;
         private System.Windows.Forms.Button btnEquiposNacionales;
         private System.Windows.Forms.Button btnClubes;

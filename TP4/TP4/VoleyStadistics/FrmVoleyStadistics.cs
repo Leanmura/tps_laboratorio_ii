@@ -40,16 +40,12 @@ namespace FormVoleyStadistics
             //AbrirFrmJugadores();//this.frmJugadores.listaDeJugadores);
         }
 
+
         #region Metodos privados
         //private DialogResult AbrirFrmJugadores()//List<JugadorDeVoley> listaDeJugadores)
         //{
         //    return this.frmJugadores.ShowDialog();
         //}
         #endregion
-
-        private void btnEntrenadores_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
