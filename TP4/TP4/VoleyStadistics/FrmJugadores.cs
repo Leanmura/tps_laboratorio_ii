@@ -171,7 +171,6 @@ namespace FormVoleyStadistics
                 // busco el indice de la lista, de la persona que es igual a la seleccionada en el datagrid
                 int indice = this.listaDeJugadores.IndexOf((JugadorDeVoley)dataGridJugadores.CurrentRow.DataBoundItem);
                 this.jugadorModificar = this.listaDeJugadores[indice]; // guardo la referencia de este jugador
-                // Modificar(auxJugador); // cuando clickee el boton modificar
             }
         }
 

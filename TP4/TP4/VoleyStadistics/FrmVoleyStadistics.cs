@@ -17,19 +17,20 @@ namespace FormVoleyStadistics
     {
         private FrmJugadores frmJugadores;
         public List<JugadorDeVoley> listaDeJugadores;
-        public List<Entrenador> listaEntrenadores;
         public static int maxId;
+        private FrmClubes frmClubes;
 
         static FrmVoleyStadistics()
         {
            FrmVoleyStadistics.maxId = 0;
          }
 
-    public FrmVoleyStadistics()
+        public FrmVoleyStadistics()
         {
             InitializeComponent();
             this.frmJugadores = new FrmJugadores();//listaDeJugadores);
             this.frmJugadores.listaDeJugadores = JugadorDeVoley.ReadAll();//new List<JugadorDeVoley>();
+            this.listaDeJugadores = this.frmJugadores.listaDeJugadores;
 
         }
 
@@ -40,6 +41,11 @@ namespace FormVoleyStadistics
             //AbrirFrmJugadores();//this.frmJugadores.listaDeJugadores);
         }
 
+        private void btnClubes_Click(object sender, EventArgs e)
+        {
+            this.frmClubes = new FrmClubes(this.listaDeJugadores);
+            this.frmClubes.ShowDialog();
+        }
 
         #region Metodos privados
         //private DialogResult AbrirFrmJugadores()//List<JugadorDeVoley> listaDeJugadores)

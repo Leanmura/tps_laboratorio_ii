@@ -71,16 +71,7 @@ namespace FormVoleyStadistics
             {
                 this.nuevoJugador = new JugadorDeVoley();
 
-                this.nuevoJugador.Id = this.id;
-
-                this.nuevoJugador.Nombre = this.txtNombre.Text;
-                this.nuevoJugador.Apellido = this.txtApellido.Text;
-                this.nuevoJugador.PaisDeNacimiento = (EPais)this.cmbNacionalidad.SelectedIndex;
-                this.nuevoJugador.FechaNacimiento = this.dateTimeFechaNacimiento.Value;
-                this.nuevoJugador.Peso = double.Parse(this.txtPeso.Text);
-                this.nuevoJugador.Altura = double.Parse(this.txtAltura.Text);
-                this.nuevoJugador.Posicion = (EPosicion)this.cmbPosicion.SelectedIndex;
-                this.DialogResult = DialogResult.OK;
+                this.cargarDatos(this.nuevoJugador);
                 Close();
             }
             catch (Exception)
@@ -93,16 +84,7 @@ namespace FormVoleyStadistics
         {
             try
             {
-                // this.jugadorAModificar.Nombre;
-
-                this.jugadorAModificar.Nombre = this.txtNombre.Text;
-                this.jugadorAModificar.Apellido = this.txtApellido.Text;
-                this.jugadorAModificar.PaisDeNacimiento = (EPais)this.cmbNacionalidad.SelectedIndex;
-                this.jugadorAModificar.FechaNacimiento = this.dateTimeFechaNacimiento.Value;
-                this.jugadorAModificar.Peso = double.Parse(this.txtPeso.Text);
-                this.jugadorAModificar.Altura = double.Parse(this.txtAltura.Text);
-                this.jugadorAModificar.Posicion = (EPosicion)this.cmbPosicion.SelectedIndex;
-                this.DialogResult = DialogResult.OK;
+                this.cargarDatos(this.jugadorAModificar);
                 Close();
             }
             catch (Exception)
@@ -118,5 +100,17 @@ namespace FormVoleyStadistics
             this.Close();
         }
 
+        private void cargarDatos(JugadorDeVoley jugador)
+        {
+            jugador.Id = this.id;
+            jugador.Nombre = this.txtNombre.Text;
+            jugador.Apellido = this.txtApellido.Text;
+            jugador.PaisDeNacimiento = (EPais)this.cmbNacionalidad.SelectedIndex;
+            jugador.FechaNacimiento = this.dateTimeFechaNacimiento.Value;
+            jugador.Peso = double.Parse(this.txtPeso.Text);
+            jugador.Altura = double.Parse(this.txtAltura.Text);
+            jugador.Posicion = (EPosicion)this.cmbPosicion.SelectedIndex;
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

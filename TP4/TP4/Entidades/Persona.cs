@@ -122,10 +122,10 @@ namespace Entidades
             return retorno;
         }
 
-        //public override int GetHashCode()
-        //{
-        //    return base.GetHashCode();
-        //}
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
         #endregion
 
         /// <summary>

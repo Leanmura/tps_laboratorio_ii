@@ -51,7 +51,6 @@ namespace FormVoleyStadistics
             this.dataGridJugadores.MultiSelect = false;
             this.dataGridJugadores.Name = "dataGridJugadores";
             this.dataGridJugadores.ReadOnly = true;
-            this.dataGridJugadores.RightToLeft = System.Windows.Forms.RightToLeft.No;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -66,6 +65,7 @@ namespace FormVoleyStadistics
             this.dataGridJugadores.Size = new System.Drawing.Size(664, 285);
             this.dataGridJugadores.TabIndex = 0;
             this.dataGridJugadores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridJugadores_CellClick);
+
             // 
             // btnNuevoJugador
             // 

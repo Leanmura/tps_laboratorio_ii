@@ -22,6 +22,7 @@ namespace Entidades
             }
             set
             {
+                Equipo.ValidarPais(value);
                 this.localidad = value;
             }
         }
@@ -33,25 +34,60 @@ namespace Entidades
             }
             set
             {
+                value = Equipo.ValidarEquipo(value);
                 this.liga = value;
             }
         }
         #endregion
 
         #region Constructor
-        public Club(string nombre, Entrenador entrenador, EPais localidad, string liga)
-            : base(nombre, entrenador)
+        public Club ():base()
         {
-            this.Liga = liga;
-            this.Localidad = localidad;
+
+        }
+        public Club(string nombre, EPais localidad, string liga)
+            :base(nombre)
+        {
+            this.liga = liga;
+            this.localidad = localidad;
         }
         #endregion
 
         #region Sobrecargas
+
+        public static bool operator ==(Club c1, Club c2)
+        {
+            bool retorno = false;
+            if (c1.Nombre == c2.Nombre && c1.Localidad == c2.Localidad)
+            {
+                retorno = true;
+            }
+            return retorno;
+        }
+
+        public static bool operator !=(Club c1, Club c2)
+        {
+            return !(c1 == c2);
+        }
+
+        public static Club operator +(Club club, JugadorDeVoley jugador)
+        {
+            try
+            {
+                club.AgregarJugador(jugador);
+
+            }
+            catch(ArgumentException) 
+            {
+                
+            }
+            return club;
+        }
+
         public override bool AgregarJugador(JugadorDeVoley jugador)
         {
             bool retorno = false;
-            if (jugador is not null && this != jugador)
+            if (jugador is not null && !this.Contains(jugador))
             {
                 if(this.listaDeJugadores.Count < Equipo.cantidadMaximaDeJugadores)
                 {
@@ -61,7 +97,7 @@ namespace Entidades
                 }
                 else
                 {
-                    throw new ArgumentException("Club lleno");
+                    throw new ArgumentException("Club lleno"); // se puede cambiar por evento
                 }
 
             }
@@ -70,19 +106,6 @@ namespace Entidades
                 throw new ArgumentException("Jugador no valido.");
             }
             return retorno;
-        }
-        public static Club operator +(Club club, JugadorDeVoley jugador)
-        {
-            try
-            {
-                club.AgregarJugador(jugador);
-
-            }
-            catch(ArgumentException)
-            {
-
-            }
-            return club;
         }
 
         public override string ToString()
@@ -93,9 +116,22 @@ namespace Entidades
             sb.AppendLine("Liga: "+this.Liga);
             return sb.ToString();
         }
+
+        public override bool Equals(object obj)
+        {
+            bool retorno = false;
+            if (obj is Club)
+            {
+                retorno = (Club)obj == this;
+            }
+            return retorno;
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
-
-
 
 
     }

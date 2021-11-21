@@ -76,6 +76,7 @@ namespace FormVoleyStadistics
             this.btnClubes.TabIndex = 4;
             this.btnClubes.Text = "Clubes";
             this.btnClubes.UseVisualStyleBackColor = true;
+            this.btnClubes.Click += new System.EventHandler(this.btnClubes_Click);
             // 
             // FrmVoleyStadistics
             // 
