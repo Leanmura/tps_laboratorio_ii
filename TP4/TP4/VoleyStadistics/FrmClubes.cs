@@ -141,35 +141,38 @@ namespace FormVoleyStadistics
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-
-            if (this.openFileDialog.ShowDialog() == DialogResult.OK)
+            if (this.listaClubes.Count == 0 || MessageBox.Show("Se perderan los clubes ya cargados, desea continuar?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                this.ultimoArchivo = this.openFileDialog.FileName;
-
-                try
+                if (this.openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    List<Club> listaAux = new List<Club>();
-                    switch (Path.GetExtension(this.UltimoArchivo))
+                    this.ultimoArchivo = this.openFileDialog.FileName;
+
+                    try
                     {
-                        case ".xml":
-                            listaAux = this.extXml.Leer(UltimoArchivo);// metodo de la clase generica
+                        List<Club> listaAux = new List<Club>();
+                        switch (Path.GetExtension(this.UltimoArchivo))
+                        {
+                            case ".xml":
+                                listaAux = this.extXml.Leer(UltimoArchivo);// metodo de la clase generica
 
 
-                            break;
-                        case ".json":
-                            listaAux = this.extJson.Leer(this.UltimoArchivo);// metodo de la clase generica
-                            break;
+                                break;
+                            case ".json":
+                                listaAux = this.extJson.Leer(this.UltimoArchivo);// metodo de la clase generica
+                                break;
+                        }
+                        this.listaClubes = listaAux;
+                        this.RefrescarDataGrid();
                     }
-                    this.listaClubes = listaAux;
-                    this.RefrescarDataGrid();
-                }
-                catch (Exception ex)
-                {
-                    this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                    this.taskMostrar = new Task(() => MostrarLbl(ex.Message));
-                    this.taskMostrar.Start();
-                }
+                    catch (Exception ex)
+                    {
+                        this.lblMensaje.ForeColor = System.Drawing.Color.Red;
+                        this.taskMostrar = new Task(() => MostrarLbl(ex.Message));
+                        this.taskMostrar.Start();
+                    }
 
+
+                }
 
             }
         }

@@ -132,7 +132,6 @@ namespace FormVoleyStadistics
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-
             if (this.openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 this.ultimoArchivo = this.openFileDialog.FileName;
