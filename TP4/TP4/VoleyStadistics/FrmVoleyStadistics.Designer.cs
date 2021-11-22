@@ -55,6 +55,7 @@ namespace FormVoleyStadistics
             this.btnEstadisticas.TabIndex = 2;
             this.btnEstadisticas.Text = "Estadisticas";
             this.btnEstadisticas.UseVisualStyleBackColor = true;
+            this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
             // 
             // btnClubes
             // 

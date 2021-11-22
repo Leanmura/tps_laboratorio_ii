@@ -63,3 +63,4 @@ E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\VoleyStadisti
 E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\VoleyStadistics\obj\Debug\net5.0-windows\ref\FormVoleyStadistics.dll
 E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\VoleyStadistics\obj\Debug\net5.0-windows\FormVoleyStadistics.pdb
 E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\VoleyStadistics\obj\Debug\net5.0-windows\FormVoleyStadistics.genruntimeconfig.cache
+E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\VoleyStadistics\obj\Debug\net5.0-windows\FormVoleyStadistics.FrmEstadisticas.resources

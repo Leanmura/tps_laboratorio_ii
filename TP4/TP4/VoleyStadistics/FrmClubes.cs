@@ -140,6 +140,7 @@ namespace FormVoleyStadistics
         {
             if (this.listaClubes.Count == 0 || MessageBox.Show("Se perderan los clubes ya cargados, desea continuar?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                this.listaClubes.Clear();
                 if (this.openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     this.ultimoArchivo = this.openFileDialog.FileName;
@@ -158,7 +159,10 @@ namespace FormVoleyStadistics
                                 listaAux = this.extJson.Leer(this.UltimoArchivo);// metodo de la clase generica
                                 break;
                         }
-                        this.listaClubes = listaAux;
+                        foreach (Club item in listaAux)
+                        {
+                            this.listaClubes.Add(item);
+                        }
                         this.RefrescarDataGrid();
                     }
                     catch (Exception ex)
@@ -252,5 +256,9 @@ namespace FormVoleyStadistics
 
         #endregion
 
+        private void FrmClubes_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }
