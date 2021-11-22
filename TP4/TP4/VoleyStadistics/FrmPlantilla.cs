@@ -61,68 +61,6 @@ namespace FormVoleyStadistics
 
         }
 
-        //protected void btnGuardar_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (!File.Exists(this.UltimoArchivo))
-        //        {
-        //            this.GuardarComo();
-        //        }
-        //        else
-        //        {
-        //            this.Guardar();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-        //        this.lblMensaje.Text = ex.Message; //"ERROR: no se pudo guardar los datos.";
-        //        this.lblMensaje.Visible = true;
-        //    }
-        //    this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-        //    this.lblMensaje.Text = "Guardado correctamente.";
-        //    this.lblMensaje.Visible = true;
-        //    //this.GuardarDatos();
-        //}
-
-        ////    protected virtual void btnCargar_Click(object sender, EventArgs e)
-        ////    {
-        ////        DialogResult confirmacion = DialogResult.Yes;
-        ////        //if (this.lista.Count > 0)
-        ////        //{
-        ////        //    confirmacion = MessageBox.Show("Solo se cargaran los jugadores con distinto ID, nombre, apellido y nacionalidad", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-        ////        //}
-        ////        if (confirmacion == DialogResult.Yes && this.openFileDialog.ShowDialog() == DialogResult.OK)
-        ////        {
-        ////            this.ultimoArchivo = this.openFileDialog.FileName;
-
-        ////            try
-        ////            {
-        ////                List<T> listaAux = new List<T>();
-        ////                switch (Path.GetExtension(this.UltimoArchivo))
-        ////                {
-        ////                    case ".xml":
-        ////                        listaAux = this.extXml.Leer(UltimoArchivo);// metodo de la clase generica
-
-
-        ////                        break;
-        ////                    case ".json":
-        ////                        listaAux = this.extJson.Leer(this.UltimoArchivo);// metodo de la clase generica
-        ////                        break;
-        ////                }
-        ////                // CopyWithNewId(listaAux); // COPIA LOS JUGADORES DE LA LISTA, QUE NO SEAN LA MISMA PERSONA, DEL ARCHIVO A LA BASE DE DATOS Y A LA LISTA DEL FORM
-        ////                //this.RefrescarDataGrid();
-        ////            }
-        ////            catch (Exception ex)
-        ////            {
-        ////                this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-        ////                this.lblMensaje.Text = this.lblMensaje.Text = ex.Message; //"ERROR: no se pudo cargar los datos.";
-        ////                this.lblMensaje.Visible = true;
-        ////            }
-        ////        }
-        ////    }
-
         protected string SeleccionarUbicacionGuardado()
         {
             string retorno = string.Empty;

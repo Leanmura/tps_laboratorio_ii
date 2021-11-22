@@ -70,7 +70,6 @@ namespace FormVoleyStadistics
             try
             {
                 this.nuevoJugador = new JugadorDeVoley();
-
                 this.cargarDatos(this.nuevoJugador);
                 Close();
             }
@@ -79,6 +78,8 @@ namespace FormVoleyStadistics
                 MessageBox.Show("Error. Faltan datos o hay datos mal ingresados.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+
 
         private void btnModificar_Click(object sender, EventArgs e)
         {

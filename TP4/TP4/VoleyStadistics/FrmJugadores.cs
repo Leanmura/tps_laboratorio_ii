@@ -222,7 +222,7 @@ namespace FormVoleyStadistics
         /// <summary>
         /// Copia los jugadores de la lista pasada como parametro a la 
         /// lista de jugadores del form (y tamb a la base de datos) 
-        /// asignandole un id valido, solo si son diferente persona.
+        /// , solo si son diferente persona.
         /// </summary>
         /// <param name="listaAux"> lista a copiar</param>
         private void CopyWithNewId(List<JugadorDeVoley> listaAux)
@@ -246,9 +246,6 @@ namespace FormVoleyStadistics
 
                         }
                     }
-                //item.Id = item.GenerarId(this.listaDeJugadores, FrmJugadores.MaxId); // le cambio el id a uno valido para la lista en la que lo voy a añadir
-                //this.listaDeJugadores.Add(item); // los añado a la lista del formulario
-
             }
         }
 

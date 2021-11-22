@@ -47,5 +47,11 @@ namespace FormVoleyStadistics
         {
             this.frmClubes.ShowDialog();
         }
+
+        private void btnEstadisticas_Click(object sender, EventArgs e)
+        {
+            FrmEstadisticas frmEstaditicas = new FrmEstadisticas(this.listaDeClubes, this.listaDeJugadores);
+            frmEstaditicas.ShowDialog();
+        }
     }
 }

@@ -81,6 +81,7 @@ namespace FormVoleyStadistics
             this.Controls.Add(this.dataGrid);
             this.Name = "FrmClubes";
             this.Text = "FrmClubes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmClubes_FormClosing);
             this.Load += new System.EventHandler(this.FrmPlantilla_Load);
             this.Controls.SetChildIndex(this.btnNuevo, 0);
             this.Controls.SetChildIndex(this.btnGuardar, 0);
