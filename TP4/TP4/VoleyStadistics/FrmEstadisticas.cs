@@ -40,7 +40,7 @@ namespace FormVoleyStadistics
 
         private void btnImprimir1_Click(object sender, EventArgs e)
         {
-            int cantidad = this.CantClubesPais((EPais)this.cmbLocalidad.SelectedIndex);
+            int cantidad = new Club().CantClubesPais((EPais)this.cmbLocalidad.SelectedIndex, this.listaClubes);
             this.lblMensaje.Text = "Cantidad de clubes en " + this.cmbLocalidad.Text + ": " + cantidad;
         }
 
@@ -53,7 +53,7 @@ namespace FormVoleyStadistics
             }
             else
             {
-                cantidad = this.CantJugadoresPosicionClub((EPosicion)this.cmbPosicion.SelectedIndex, this.cmbClubes1.SelectedIndex);
+                cantidad = new Club().CantJugadoresPosicionClub((EPosicion)this.cmbPosicion.SelectedIndex, this.cmbClubes1.SelectedIndex, this.listaClubes);
                 this.lblMensaje.Text = "Cantidad de jugadores " + this.cmbPosicion.Text + " en " + this.cmbClubes1.Text + ": " + cantidad;
 
             }
@@ -68,54 +68,12 @@ namespace FormVoleyStadistics
             }
             else
             {
-                cantidad = this.CantJugadoresExtranjerosClub(this.cmbClubes2.SelectedIndex);
+                cantidad = new Club().CantJugadoresExtranjerosClub(this.cmbClubes2.SelectedIndex, this.listaClubes);
                 this.lblMensaje.Text = "Cantidad de jugadores extranjeros en " + this.cmbClubes2.Text + ": " + cantidad;
             }
         }
 
 
-
-        private int CantClubesPais(EPais pais)
-        {
-            int cantidad = 0;
-            foreach (Club item in this.listaClubes)
-            {
-                if(item.Localidad == pais)
-                {
-                    cantidad++;
-                }
-            }
-            return cantidad;
-        }
-
-        private int CantJugadoresPosicionClub(EPosicion posicion, int indiceClub)
-        {
-            int cantidad = 0;
-            Club club = this.listaClubes[indiceClub];
-            foreach (JugadorDeVoley item in club.listaDeJugadores)
-            {
-                if(item.Posicion == posicion)
-                {
-                    cantidad++;
-                }
-            }
-            return cantidad;
-        }
-
-        private int CantJugadoresExtranjerosClub(int indiceClub)
-        {
-            int cantidad = 0 ;
-            Club club = this.listaClubes[indiceClub];
-            EPais localidadClub = club.Localidad;
-            foreach (JugadorDeVoley item in club.listaDeJugadores)
-            {
-                if(item.PaisDeNacimiento != localidadClub)
-                {
-                    cantidad++;
-                }
-            }
-            return cantidad;
-        }
 
     }
 }

@@ -7,8 +7,10 @@ using System.Threading;
 
 namespace Entidades
 {
+
     public abstract class Persona
     {
+
         private string nombre;
         private string apellido;
         private EPais paisDeNacimiento;
@@ -20,7 +22,7 @@ namespace Entidades
             get { return this.nombre; }
             set 
             {
-                this.nombre = Persona.ValidarSustPropio(value);
+                this.nombre = ValidarSustPropio(value);
             }
         }
         public string Apellido
@@ -28,7 +30,7 @@ namespace Entidades
             get { return this.apellido; }
             set
             {
-                this.apellido = Persona.ValidarSustPropio(value);
+                this.apellido = ValidarSustPropio(value);
             }
         }
         public EPais PaisDeNacimiento
@@ -133,7 +135,7 @@ namespace Entidades
         /// </summary>
         /// <param name="value"> Palabra a validar </param>
         /// <returns> Palabra valida formateada </returns>
-        private static string ValidarSustPropio(string value)
+        private string ValidarSustPropio(string value)
         {
             value = value.ToLower().Trim();
             if (string.IsNullOrWhiteSpace(value))
@@ -205,6 +207,7 @@ namespace Entidades
         #endregion
 
         #endregion
+
     }
 
 
