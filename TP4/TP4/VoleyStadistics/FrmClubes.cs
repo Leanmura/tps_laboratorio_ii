@@ -3,6 +3,8 @@ using IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FormVoleyStadistics
@@ -16,6 +18,7 @@ namespace FormVoleyStadistics
         private Club clubAModificar;
         private ExtXml<List<Club>> extXml; // se crea atributo de clase generica
         private ExtJson<List<Club>> extJson;
+
 
         public FrmClubes(List<JugadorDeVoley> listaJugadores)
         {
@@ -42,13 +45,14 @@ namespace FormVoleyStadistics
                 if (this.listaClubes.Contains(this.frmNuevoClub.NuevoClub))
                 {
                     this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                    this.lblMensaje.Text = "Error. El club ya esta en la lista."; // podria ser en otro hilo, dejandolo por 3 segundos
+                    this.taskMostrar = new Task(() => MostrarLbl("Error. El club ya esta en la lista."));
+                    this.taskMostrar.Start();
                 }
                 else
                 {
-                    this.lblMensaje.Visible = true;
                     this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-                    this.lblMensaje.Text = "Club Creado Correctamente.";
+                    this.taskMostrar = new Task(() => MostrarLbl("Club Creado Correctamente."));
+                    this.taskMostrar.Start();
                     this.listaClubes.Add(this.frmNuevoClub.NuevoClub);
                 }
                 this.RefrescarDataGrid();
@@ -74,9 +78,9 @@ namespace FormVoleyStadistics
         {
             if (this.AbrirFrmModificarClub(this.clubAModificar) == DialogResult.OK)
             {
-                this.lblMensaje.Visible = true;
                 this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-                this.lblMensaje.Text = "Jugador Modificado Correctamente.";
+                this.taskMostrar = new Task(() => MostrarLbl("Club Modificado Correctamente."));
+                this.taskMostrar.Start();
                 // this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
                 this.RefrescarDataGrid();
 
@@ -86,7 +90,6 @@ namespace FormVoleyStadistics
         private DialogResult AbrirFrmModificarClub(Club clubAModificar)
         {
             BuscarJugadoresDisponibles();
-            this.lblMensaje.Visible = false;
             this.frmNuevoClub = new FrmNuevoClub(this.listaJugadoresDisponibles, clubAModificar);
             return this.frmNuevoClub.ShowDialog();
         }
@@ -102,9 +105,9 @@ namespace FormVoleyStadistics
                 if (MessageBox.Show("Esta seguro que quiere eliminar este club?", "Mensaje de confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     this.listaClubes.Remove(this.clubAModificar);
-                    this.lblMensaje.Visible = true;
                     this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-                    this.lblMensaje.Text = "Club Borrado Correctamente.";
+                    this.taskMostrar = new Task(() => MostrarLbl("Club Borrado Correctamente."));
+                    this.taskMostrar.Start();
 
                     this.RefrescarDataGrid();
                 }
@@ -128,12 +131,12 @@ namespace FormVoleyStadistics
             catch (Exception ex)
             {
                 this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                this.lblMensaje.Text = ex.Message; //"ERROR: no se pudo guardar los datos.";
-                this.lblMensaje.Visible = true;
+                this.taskMostrar = new Task(() => MostrarLbl(ex.Message));
+                this.taskMostrar.Start();
             }
             this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-            this.lblMensaje.Text = "Guardado correctamente.";
-            this.lblMensaje.Visible = true;
+            this.taskMostrar = new Task(() => MostrarLbl("Guardado Correctamente."));
+            this.taskMostrar.Start();
         }
 
         private void btnCargar_Click(object sender, EventArgs e)
@@ -163,9 +166,11 @@ namespace FormVoleyStadistics
                 catch (Exception ex)
                 {
                     this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                    this.lblMensaje.Text = this.lblMensaje.Text = ex.Message; //"ERROR: no se pudo cargar los datos.";
-                    this.lblMensaje.Visible = true;
+                    this.taskMostrar = new Task(() => MostrarLbl(ex.Message));
+                    this.taskMostrar.Start();
                 }
+
+
             }
         }
 
@@ -230,5 +235,6 @@ namespace FormVoleyStadistics
                 }
             }
         }
+
     }
 }

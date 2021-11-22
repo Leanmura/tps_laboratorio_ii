@@ -65,7 +65,6 @@ namespace FormVoleyStadistics
             this.dataGridJugadores.Size = new System.Drawing.Size(664, 285);
             this.dataGridJugadores.TabIndex = 0;
             this.dataGridJugadores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridJugadores_CellClick);
-
             // 
             // btnNuevoJugador
             // 
@@ -126,10 +125,8 @@ namespace FormVoleyStadistics
             this.lblMensaje.ForeColor = System.Drawing.Color.Red;
             this.lblMensaje.Location = new System.Drawing.Point(12, 366);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(46, 15);
+            this.lblMensaje.Size = new System.Drawing.Size(0, 15);
             this.lblMensaje.TabIndex = 6;
-            this.lblMensaje.Text = "ERROR";
-            this.lblMensaje.Visible = false;
             // 
             // FrmJugadores
             // 

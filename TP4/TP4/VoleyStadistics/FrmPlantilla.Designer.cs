@@ -91,10 +91,8 @@ namespace FormVoleyStadistics
             this.lblMensaje.ForeColor = System.Drawing.Color.Red;
             this.lblMensaje.Location = new System.Drawing.Point(12, 366);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(46, 15);
+            this.lblMensaje.Size = new System.Drawing.Size(0, 15);
             this.lblMensaje.TabIndex = 9;
-            this.lblMensaje.Text = "ERROR";
-            this.lblMensaje.Visible = false;
             // 
             // FrmPlantilla
             // 

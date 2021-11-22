@@ -29,31 +29,23 @@ namespace FormVoleyStadistics
         public FrmVoleyStadistics()
         {
             InitializeComponent();
-            this.frmJugadores = new FrmJugadores();//listaDeJugadores);
-            this.frmJugadores.listaDeJugadores = JugadorDeVoley.ReadAll();//new List<JugadorDeVoley>();
-            this.listaDeJugadores = this.frmJugadores.listaDeJugadores;
-            this.frmClubes = new FrmClubes(this.listaDeJugadores);
+            this.frmJugadores = new FrmJugadores(); 
+            this.frmJugadores.listaDeJugadores = JugadorDeVoley.ReadAll(); // cargo en la lista de jugadores del frmJugadores los datos de la base de datos
+            this.listaDeJugadores = this.frmJugadores.listaDeJugadores; // copio la referencia en un atributo de esta instancia
+
+            this.frmClubes = new FrmClubes(this.listaDeJugadores); 
             this.frmClubes.listaClubes = new List<Club>();
             this.listaDeClubes = this.frmClubes.listaClubes;
         }
 
-
         private void btnJugadores_Click(object sender, EventArgs e)
         {
             this.frmJugadores.ShowDialog();
-            //AbrirFrmJugadores();//this.frmJugadores.listaDeJugadores);
         }
 
         private void btnClubes_Click(object sender, EventArgs e)
         {
             this.frmClubes.ShowDialog();
         }
-
-        #region Metodos privados
-        //private DialogResult AbrirFrmJugadores()//List<JugadorDeVoley> listaDeJugadores)
-        //{
-        //    return this.frmJugadores.ShowDialog();
-        //}
-        #endregion
     }
 }

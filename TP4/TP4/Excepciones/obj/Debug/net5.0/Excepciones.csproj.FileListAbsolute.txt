@@ -21,3 +21,4 @@ E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\Excepciones\o
 E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\Excepciones\obj\Debug\net5.0\Excepciones.dll
 E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\Excepciones\obj\Debug\net5.0\ref\Excepciones.dll
 E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\Excepciones\obj\Debug\net5.0\Excepciones.pdb
+E:\Tecnicatura en programacion\2Cuatri\Programacion II\TPs\TP4\TP4\Excepciones\obj\Debug\net5.0\Excepciones.csproj.AssemblyReference.cache

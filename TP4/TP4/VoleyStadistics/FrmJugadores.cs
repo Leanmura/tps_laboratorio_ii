@@ -3,25 +3,31 @@ using IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FormVoleyStadistics
 {
     public partial class FrmJugadores : Form
     {
-        private static string rutaArchivo;
+        #region Atributos
 
         public List<JugadorDeVoley> listaDeJugadores;
         private FrmNuevoJugador frmNuevoJugador;
+        private JugadorDeVoley jugadorModificar;
 
         private OpenFileDialog openFileDialog;
         private SaveFileDialog saveFileDialog;
         private string ultimoArchivo;
         private ExtXml<List<JugadorDeVoley>> extXml; // se crea atributo de clase generica
         private ExtJson<List<JugadorDeVoley>> extJson;
-        private JugadorDeVoley jugadorModificar;
         private static int maxId;
 
+        private Task taskMostrar;
+        #endregion
+
+        #region Propiedades
         private string UltimoArchivo
         {
             get
@@ -36,16 +42,11 @@ namespace FormVoleyStadistics
                 }
             }
         }
-
         public static int MaxId { get => maxId; set => maxId = value; }
 
-        static FrmJugadores()
-        {
-            string nombreArchivo = "listaDeJugadores.xml";
-            string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            FrmJugadores.rutaArchivo = Path.Combine(rutaEscritorio, nombreArchivo);
-        }
+        #endregion
 
+        #region Constructor
         public FrmJugadores()//List<JugadorDeVoley> listaDeJugadores)
         {
             InitializeComponent();
@@ -58,8 +59,12 @@ namespace FormVoleyStadistics
             this.saveFileDialog.Filter = "Archivo XML|*.xml|Archivo JSON|*.json";
             this.extXml = new ExtXml<List<JugadorDeVoley>>(); // se instacia la clase generica
             this.extJson = new ExtJson<List<JugadorDeVoley>>();
+
         }
 
+        #endregion
+
+        #region Manejadores
         private void FrmJugadores_Load(object sender, EventArgs e)
         {
             if (FrmJugadores.MaxId == 0)
@@ -81,17 +86,17 @@ namespace FormVoleyStadistics
                 }
                 else
                 {
-                    this.lblMensaje.Visible = true;
                     this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-                    this.lblMensaje.Text = "Jugador Creado Correctamente.";
+                    this.taskMostrar = new Task(() => MostrarLbl("Jugador Creado Correctamente."));
+                    this.taskMostrar.Start();
                     FrmJugadores.MaxId = this.frmNuevoJugador.NuevoJugador.Id + 1;
                     this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
                     if (!JugadorDeVoley.Insert(this.frmNuevoJugador.NuevoJugador))
                     {
                         this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                        this.lblMensaje.Text = "Error no se pudo guardar en la base de datos."; // podria ser en otro hilo, dejandolo por 3 segundos
+                        this.taskMostrar = new Task(() => MostrarLbl("Error no se pudo guardar en la base de datos."));
+                        this.taskMostrar.Start();
                     }
-
                 }
                 this.RefrescarDataGrid();
 
@@ -114,12 +119,14 @@ namespace FormVoleyStadistics
             catch (Exception ex)
             {
                 this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                this.lblMensaje.Text = ex.Message; //"ERROR: no se pudo guardar los datos.";
-                this.lblMensaje.Visible = true;
+                this.taskMostrar = new Task(() => MostrarLbl(ex.Message));
+                this.taskMostrar.Start();
+
             }
             this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-            this.lblMensaje.Text = "Guardado correctamente.";
-            this.lblMensaje.Visible = true;
+            this.taskMostrar = new Task(() => MostrarLbl("Guardado correctamente."));
+            this.taskMostrar.Start();
+
             //this.GuardarDatos();
         }
 
@@ -149,12 +156,11 @@ namespace FormVoleyStadistics
                 catch (Exception ex)
                 {
                     this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-                    this.lblMensaje.Text = this.lblMensaje.Text = ex.Message; //"ERROR: no se pudo cargar los datos.";
-                    this.lblMensaje.Visible = true;
+                    this.taskMostrar = new Task(() => MostrarLbl(ex.Message));
+                    this.taskMostrar.Start();
                 }
             }
         }
-
 
         private void dataGridJugadores_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -174,14 +180,13 @@ namespace FormVoleyStadistics
 
             if (this.AbrirFrmModificarJugador(this.jugadorModificar) == DialogResult.OK)
             {
-                this.lblMensaje.Visible = true;
                 this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-                this.lblMensaje.Text = "Jugador Modificado Correctamente.";
+                this.taskMostrar = new Task(() => MostrarLbl("Jugador Modificado Correctamente."));
+                this.taskMostrar.Start();
                 if (!JugadorDeVoley.Update(this.jugadorModificar))
                 {
                     MessageBox.Show("Error no se pudo actualizar la base de datos.");
                 }
-                // this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
                 this.RefrescarDataGrid();
 
             }
@@ -198,9 +203,9 @@ namespace FormVoleyStadistics
                 if (MessageBox.Show("Esta seguro que quiere eliminar este jugador?", "Mensaje de confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     this.listaDeJugadores.Remove(this.jugadorModificar);
-                    this.lblMensaje.Visible = true;
                     this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-                    this.lblMensaje.Text = "Jugador Borrado Correctamente.";
+                    this.taskMostrar = new Task(() => MostrarLbl("Jugador Borrado Correctamente."));
+                    this.taskMostrar.Start();
                     if (!JugadorDeVoley.Delete(this.jugadorModificar))
                     {
                         MessageBox.Show("Error no se pudo actualizar la base de datos.");
@@ -211,6 +216,8 @@ namespace FormVoleyStadistics
 
             }
         }
+
+        #endregion
 
         #region Metodos privados
         /// <summary>
@@ -249,7 +256,6 @@ namespace FormVoleyStadistics
         private DialogResult AbrirFrmNuevoJugador()
         {
             int id = FrmJugadores.MaxId; //new JugadorDeVoley().GenerarId(this.listaDeJugadores, FrmJugadores.maxId);
-            this.lblMensaje.Visible = false;
             this.frmNuevoJugador = new FrmNuevoJugador(id);
             return this.frmNuevoJugador.ShowDialog();
         }
@@ -257,7 +263,6 @@ namespace FormVoleyStadistics
         // encapsulo la instanciacion de FrmNuevoJugador(jugadorAModificar), para no confundir. creo que deberia hacer un nuevo form que herede de este o cambiarle el nombre
         private DialogResult AbrirFrmModificarJugador(JugadorDeVoley jugadorAModificar)
         {
-            this.lblMensaje.Visible = false;
             this.frmNuevoJugador = new FrmNuevoJugador(jugadorAModificar);
             return this.frmNuevoJugador.ShowDialog();
         }
@@ -279,40 +284,6 @@ namespace FormVoleyStadistics
                 this.dataGridJugadores.Columns["PaisDeNacimiento"].HeaderText = "Pais";
             }
         }
-
-        //private void GuardarDatos() hecho en una libreria de clase
-        //{
-        //    try
-        //    {
-        //        using (XmlTextWriter writer = new XmlTextWriter(rutaArchivo, Encoding.UTF8))
-        //        {
-        //            XmlSerializer ser = new XmlSerializer((typeof(List<JugadorDeVoley>)));
-        //            ser.Serialize(writer, listaDeJugadores);
-        //            this.lblMensaje.Visible = true;
-        //            this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-        //            this.lblMensaje.Text = "Los datos se guardaron correctamente.";
-
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-        //        this.lblMensaje.Text = e.Message; //"ERROR: no se pudo guardar los datos.";
-        //        this.lblMensaje.Visible = true;
-        //    }
-        //}
-
-        //private void CargarDatos()
-        //{
-        //        using (XmlTextReader reader = new XmlTextReader(rutaArchivo))
-        //        {
-        //            XmlSerializer ser = new XmlSerializer((typeof(List<JugadorDeVoley>)));
-        //            this.listaDeJugadores = ser.Deserialize(reader) as List<JugadorDeVoley>;
-        //            this.lblMensaje.Visible = true;
-        //            this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-        //            this.lblMensaje.Text = "Los datos se cargaron correctamente.";
-        //        }
-        //
 
         /// <summary>
         /// Guarda un archivo permitiendo escoger el lugar y nombre con el que se guardara.
@@ -348,6 +319,10 @@ namespace FormVoleyStadistics
             }
         }
 
+        /// <summary>
+        /// abre una ventana, para seleccionar la carpeta de guardado
+        /// </summary>
+        /// <returns> retorna la direccion del archivo </returns>
         private string SeleccionarUbicacionGuardado()
         {
             string retorno = string.Empty;
@@ -358,7 +333,28 @@ namespace FormVoleyStadistics
             return retorno;
         }
 
-
+        /// <summary>
+        /// Muestra el lblMensaje en un nuevo hilo por 3 segundos
+        /// </summary>
+        /// <param name="texto"> texto a mostrar en el label </param>
+        private void MostrarLbl(string texto)
+        {
+           
+            if(this.lblMensaje.InvokeRequired)
+            {
+                Action<string> delegado = this.MostrarLbl;
+               // Callback d = new Callback(this.MostrarLbl);
+                object[] objs = new object[] { texto };
+                this.Invoke(delegado, objs);
+                Thread.Sleep(3000);
+                objs = new object[] { "" };
+                this.Invoke(delegado, objs);
+            }
+            else
+            {
+                this.lblMensaje.Text = texto;
+            }
+        }
         #endregion
     }
 }

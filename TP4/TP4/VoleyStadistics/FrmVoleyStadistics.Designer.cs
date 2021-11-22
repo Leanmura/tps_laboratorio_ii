@@ -32,7 +32,6 @@ namespace FormVoleyStadistics
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVoleyStadistics));
             this.btnJugadores = new System.Windows.Forms.Button();
             this.btnEstadisticas = new System.Windows.Forms.Button();
-            this.btnEquiposNacionales = new System.Windows.Forms.Button();
             this.btnClubes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -50,27 +49,17 @@ namespace FormVoleyStadistics
             // btnEstadisticas
             // 
             this.btnEstadisticas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEstadisticas.Location = new System.Drawing.Point(12, 213);
+            this.btnEstadisticas.Location = new System.Drawing.Point(12, 146);
             this.btnEstadisticas.Name = "btnEstadisticas";
             this.btnEstadisticas.Size = new System.Drawing.Size(281, 61);
             this.btnEstadisticas.TabIndex = 2;
             this.btnEstadisticas.Text = "Estadisticas";
             this.btnEstadisticas.UseVisualStyleBackColor = true;
             // 
-            // btnEquiposNacionales
-            // 
-            this.btnEquiposNacionales.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEquiposNacionales.Location = new System.Drawing.Point(12, 79);
-            this.btnEquiposNacionales.Name = "btnEquiposNacionales";
-            this.btnEquiposNacionales.Size = new System.Drawing.Size(281, 61);
-            this.btnEquiposNacionales.TabIndex = 3;
-            this.btnEquiposNacionales.Text = "Equipos Nacionales";
-            this.btnEquiposNacionales.UseVisualStyleBackColor = true;
-            // 
             // btnClubes
             // 
             this.btnClubes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnClubes.Location = new System.Drawing.Point(12, 146);
+            this.btnClubes.Location = new System.Drawing.Point(12, 79);
             this.btnClubes.Name = "btnClubes";
             this.btnClubes.Size = new System.Drawing.Size(281, 61);
             this.btnClubes.TabIndex = 4;
@@ -82,9 +71,8 @@ namespace FormVoleyStadistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(305, 282);
+            this.ClientSize = new System.Drawing.Size(305, 217);
             this.Controls.Add(this.btnClubes);
-            this.Controls.Add(this.btnEquiposNacionales);
             this.Controls.Add(this.btnEstadisticas);
             this.Controls.Add(this.btnJugadores);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -101,7 +89,6 @@ namespace FormVoleyStadistics
 
         private System.Windows.Forms.Button btnJugadores;
         private System.Windows.Forms.Button btnEstadisticas;
-        private System.Windows.Forms.Button btnEquiposNacionales;
         private System.Windows.Forms.Button btnClubes;
     }
 }
