@@ -19,9 +19,9 @@ namespace FormVoleyStadistics
 
         // private FrmNuevo frmNuevo; // atributo de cada hijo
 
-        private OpenFileDialog openFileDialog;
-        private SaveFileDialog saveFileDialog;
-        private string ultimoArchivo;
+        protected OpenFileDialog openFileDialog;
+        protected SaveFileDialog saveFileDialog;
+        protected string ultimoArchivo;
 
         //// private T jugadorModificar;
         //// private static int maxId;
@@ -122,37 +122,15 @@ namespace FormVoleyStadistics
         ////        }
         ////    }
 
-
-
-        ////    protected abstract void btnModificar_Click(object sender, EventArgs e);
-
-        ////    protected abstract void btnEliminar_Click(object sender, EventArgs e);
-
-        ////    protected abstract DialogResult AbrirFrmNuevo();
-
-        ////    // encapsulo la instanciacion de frmNuevo(jugadorAModificar), para no confundir. creo que deberia hacer un nuevo form que herede de este o cambiarle el nombre
-        ////    protected abstract DialogResult AbrirFrmModificar(T item);
-
-
-        ///// <summary>
-        ///// Guarda un archivo permitiendo escoger el lugar y nombre con el que se guardara.
-        ///// </summary>
-        //protected abstract void GuardarComo();
-
-        ///// <summary>
-        ///// Guarda un archvio ya guardado anteriormente.
-        ///// </summary>
-        //protected abstract void Guardar();
-
-        //protected string SeleccionarUbicacionGuardado()
-        //{
-        //    string retorno = string.Empty;
-        //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-        //    {
-        //        retorno = this.saveFileDialog.FileName;
-        //    }
-        //    return retorno;
-        //}
+        protected string SeleccionarUbicacionGuardado()
+        {
+            string retorno = string.Empty;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                retorno = this.saveFileDialog.FileName;
+            }
+            return retorno;
+        }
 
     }
 }

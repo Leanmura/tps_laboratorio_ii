@@ -7,10 +7,10 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Entrenador e1 = new Entrenador("Jose", "Deus", EPais.Brasil, DateTime.Parse("18/08/2000"));
-            Entrenador e2 = new Entrenador("Josue", "God", EPais.Argentina, DateTime.Parse("18/08/2000"));
+            //Entrenador e1 = new Entrenador("Jose", "Deus", EPais.Brasil, DateTime.Parse("18/08/2000"));
+            //Entrenador e2 = new Entrenador("Josue", "God", EPais.Argentina, DateTime.Parse("18/08/2000"));
 
-            Club c1 = new Club("Madrid", e1, EPais.Argentina, "Metro");
+            Club c1 = new Club("Madrid", EPais.Argentina, "Metro");
             JugadorDeVoley j1 = new JugadorDeVoley("Manuel", "Gonzalez", EPais.Francia, DateTime.Parse("28/02/1990"), 67, 1.66, EPosicion.Libero);
             JugadorDeVoley j2 = new JugadorDeVoley("Emanuel", "Liam", EPais.Japon, DateTime.Parse("3/01/1920"), 62, 1.55, EPosicion.Punta);
             JugadorDeVoley j3 = new JugadorDeVoley("Jose", "Rodriguez", EPais.Argentina, DateTime.Parse("28/02/1990"), 65, 1.65, EPosicion.Central);
@@ -26,7 +26,7 @@ namespace Test
             JugadorDeVoley j13 = new JugadorDeVoley("Tomas", "Tevez", EPais.Rusia, DateTime.Parse("28/02/1990"), 87, 1.47, EPosicion.Libero);
             JugadorDeVoley j14 = new JugadorDeVoley("walter", "Paermo", EPais.Italia, DateTime.Parse("3/01/1920"), 78, 1.6, EPosicion.Punta);
             JugadorDeVoley j15 = new JugadorDeVoley("Delfina", "Alegre", EPais.Brasil, DateTime.Parse("28/02/1990"), 90, 1.97, EPosicion.Libero);
-            Nacional n1 = new Nacional(EPais.Argentina, e1);
+            Nacional n1 = new Nacional(EPais.Argentina);
 
             // utilizo el metodo Mostrar, que internamente utiliza la sobrecarga del ToString
             Console.WriteLine(j1.Mostrar());
@@ -40,7 +40,7 @@ namespace Test
                 Console.WriteLine("No son iguales");
             }
 
-            j2.IdJugador = 1;
+            j2.Id = 1;
             if (j1 == j2) // son iguales, ya que modifico el id del jugador 1
             {
                 Console.WriteLine("Son Iguales");
@@ -59,24 +59,24 @@ namespace Test
                 Console.WriteLine("No son iguales");
             }
 
-            if (e1 == e2) // No son iguales, compara por id y para todas as instancias es distinto
-            {
-                Console.WriteLine("Son Iguales");
-            }
-            else
-            {
-                Console.WriteLine("No son iguales");
-            }
+            //if (e1 == e2) // No son iguales, compara por id y para todas as instancias es distinto
+            //{
+            //    Console.WriteLine("Son Iguales");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No son iguales");
+            //}
 
-            if (e2.Equals(e1)) // sobrecarga del equals(igual que el ==), por lo tanto son distintos
-            {
-                Console.WriteLine("Son Iguales");
-            }
-            else
-            {
-                Console.WriteLine("No son iguales");
-            }
-            Console.WriteLine(e2.Mostrar());
+            //if (e2.Equals(e1)) // sobrecarga del equals(igual que el ==), por lo tanto son distintos
+            //{
+            //    Console.WriteLine("Son Iguales");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No son iguales");
+            //}
+            //Console.WriteLine(e2.Mostrar());
 
             // n1 es argentina, entonces para que se puede agregar los jugadores deben ser argentinos
             n1 += j1; // j1 es frances
@@ -95,7 +95,7 @@ namespace Test
             {
                 Console.WriteLine(ex.Message);
             }
-            j2.IdJugador = 2;
+            j2.Id = 2;
             try
             {
                 c1.AgregarJugador(j2); // como j2 tiene el mismo id que j1 arroja una excepcion, ya que no se pudo cargar
@@ -121,7 +121,7 @@ namespace Test
 
 
 
-            if (c1 == j3) // no esta
+            if (c1.Contains(j3)) // no esta
             {
                 Console.WriteLine("j1 esta en c1. ");
             }

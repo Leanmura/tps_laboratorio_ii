@@ -38,13 +38,22 @@ namespace FormVoleyStadistics
             this.btnNuevo.Text = "Nuevo Club";
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
             // btnCargar
             // 
             this.btnCargar.Location = new System.Drawing.Point(179, 335);
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
             // btnModificar
             // 
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // dataGrid
             // 

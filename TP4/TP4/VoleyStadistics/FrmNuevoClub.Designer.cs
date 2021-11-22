@@ -166,6 +166,7 @@ namespace FormVoleyStadistics
             this.Controls.Add(this.cmbLocalidad);
             this.Name = "FrmNuevoClub";
             this.Text = "FrmClub";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmNuevoClub_FormClosing);
             this.Load += new System.EventHandler(this.FrmNuevoClub_Load);
             this.Controls.SetChildIndex(this.btnModificar, 0);
             this.Controls.SetChildIndex(this.btnCancelar, 0);

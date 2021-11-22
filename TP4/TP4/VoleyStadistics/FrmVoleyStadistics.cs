@@ -19,6 +19,7 @@ namespace FormVoleyStadistics
         public List<JugadorDeVoley> listaDeJugadores;
         public static int maxId;
         private FrmClubes frmClubes;
+        public List<Club> listaDeClubes;
 
         static FrmVoleyStadistics()
         {
@@ -31,7 +32,9 @@ namespace FormVoleyStadistics
             this.frmJugadores = new FrmJugadores();//listaDeJugadores);
             this.frmJugadores.listaDeJugadores = JugadorDeVoley.ReadAll();//new List<JugadorDeVoley>();
             this.listaDeJugadores = this.frmJugadores.listaDeJugadores;
-
+            this.frmClubes = new FrmClubes(this.listaDeJugadores);
+            this.frmClubes.listaClubes = new List<Club>();
+            this.listaDeClubes = this.frmClubes.listaClubes;
         }
 
 
@@ -43,7 +46,6 @@ namespace FormVoleyStadistics
 
         private void btnClubes_Click(object sender, EventArgs e)
         {
-            this.frmClubes = new FrmClubes(this.listaDeJugadores);
             this.frmClubes.ShowDialog();
         }
 

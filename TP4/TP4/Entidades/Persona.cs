@@ -147,7 +147,7 @@ namespace Entidades
                     throw new ArgumentException("La palabra contiene numeros.");
                 }
             }
-            value = value.Replace(value[0], char.ToUpper(value[0]));
+            
             return value;
         }
 

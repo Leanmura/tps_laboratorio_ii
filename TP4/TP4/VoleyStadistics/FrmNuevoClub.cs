@@ -38,9 +38,12 @@ namespace FormVoleyStadistics
         }
 
         #endregion
+
         public FrmNuevoClub(List<JugadorDeVoley> listaJugadoresDisponibles)
         {
             InitializeComponent();
+            this.btnCrear.Visible = true;
+            this.btnModificar.Visible = false;
             this.listaJugadoresDisponibles = listaJugadoresDisponibles;
             this.listaJugadoresMiClub = new List<JugadorDeVoley>();
             this.cmbLocalidad.Items.AddRange(Enum.GetNames(typeof(EPais)));
@@ -49,7 +52,13 @@ namespace FormVoleyStadistics
         }
         public FrmNuevoClub(List<JugadorDeVoley> listaJugadoresDisponibles, Club clubAModificar) : this(listaJugadoresDisponibles)
         {
+            this.btnCrear.Visible = false;
+            this.btnModificar.Visible = true;
             this.clubAModificar = clubAModificar;
+            this.listaJugadoresMiClub = clubAModificar.listaDeJugadores;
+            this.cmbLocalidad.SelectedIndex = (int)clubAModificar.Localidad;
+            this.txtNombre.Text = clubAModificar.Nombre;
+            this.txtLiga.Text = clubAModificar.Liga;
         }
 
         private void FrmNuevoClub_Load(object sender, EventArgs e)
@@ -111,6 +120,7 @@ namespace FormVoleyStadistics
             }
 
         }
+
         private void btnRemove_Click(object sender, EventArgs e)
         {
             if (this.dataGridMiClub.CurrentRow != null)
@@ -138,6 +148,7 @@ namespace FormVoleyStadistics
             {
                 this.nuevoClub = new Club();
                 this.cargarDatos(this.NuevoClub);
+               
                 Close();
             }
             catch (Exception)
@@ -171,11 +182,20 @@ namespace FormVoleyStadistics
         /// <param name="club"> Cllub a crear o modificar </param>
         private void cargarDatos(Club club)
         {
+            if (!(this.listaJugadoresMiClub.Count >= 6))
+            {
+                throw new ArgumentException("La lista no tiene jugadores suficientes"); // cambiar por eventos
+            }
+            club.listaDeJugadores = this.listaJugadoresMiClub;
             club.Nombre = this.txtNombre.Text;
             club.Liga = this.txtLiga.Text;
             club.Localidad = (EPais)this.cmbLocalidad.SelectedIndex;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 
+        private void FrmNuevoClub_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.listaJugadoresDisponibles.Clear();
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace Entidades
                 this.nombre = value;
             }
         }
+
         //public Entrenador Entrenador
         //{
         //    get

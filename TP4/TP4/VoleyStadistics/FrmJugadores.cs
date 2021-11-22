@@ -49,7 +49,7 @@ namespace FormVoleyStadistics
         public FrmJugadores()//List<JugadorDeVoley> listaDeJugadores)
         {
             InitializeComponent();
-            
+
             //this.listaDeJugadores = listaDeJugadores;
             //this.frmNuevoJugador = new FrmNuevoJugador();
             this.openFileDialog = new OpenFileDialog();
@@ -62,7 +62,7 @@ namespace FormVoleyStadistics
 
         private void FrmJugadores_Load(object sender, EventArgs e)
         {
-            if(FrmJugadores.MaxId == 0)
+            if (FrmJugadores.MaxId == 0)
             {
                 FrmJugadores.MaxId = new JugadorDeVoley().GenerarId(this.listaDeJugadores, 0);
             }
@@ -75,7 +75,7 @@ namespace FormVoleyStadistics
         {
             if (this.AbrirFrmNuevoJugador() == DialogResult.OK)
             {
-                if(this.listaDeJugadores.Contains( this.frmNuevoJugador.NuevoJugador))
+                if (this.listaDeJugadores.Contains(this.frmNuevoJugador.NuevoJugador))
                 {
                     MessageBox.Show("Error. Ya existe un jugador identico.");
                 }
@@ -84,9 +84,9 @@ namespace FormVoleyStadistics
                     this.lblMensaje.Visible = true;
                     this.lblMensaje.ForeColor = System.Drawing.Color.Black;
                     this.lblMensaje.Text = "Jugador Creado Correctamente.";
-                    FrmJugadores.MaxId = this.frmNuevoJugador.NuevoJugador.Id+1;
+                    FrmJugadores.MaxId = this.frmNuevoJugador.NuevoJugador.Id + 1;
                     this.listaDeJugadores.Add(this.frmNuevoJugador.NuevoJugador);
-                    if(!JugadorDeVoley.Insert(this.frmNuevoJugador.NuevoJugador))
+                    if (!JugadorDeVoley.Insert(this.frmNuevoJugador.NuevoJugador))
                     {
                         this.lblMensaje.ForeColor = System.Drawing.Color.Red;
                         this.lblMensaje.Text = "Error no se pudo guardar en la base de datos."; // podria ser en otro hilo, dejandolo por 3 segundos
@@ -118,19 +118,15 @@ namespace FormVoleyStadistics
                 this.lblMensaje.Visible = true;
             }
             this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-            this.lblMensaje.Text = "Guardado correctamente."; 
+            this.lblMensaje.Text = "Guardado correctamente.";
             this.lblMensaje.Visible = true;
             //this.GuardarDatos();
         }
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            DialogResult confirmacion = DialogResult.Yes;
-            //if (this.listaDeJugadores.Count > 0)
-            //{
-            //    confirmacion = MessageBox.Show("Solo se cargaran los jugadores con distinto ID, nombre, apellido y nacionalidad", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            //}
-            if (confirmacion == DialogResult.Yes && this.openFileDialog.ShowDialog() == DialogResult.OK)
+
+            if (this.openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 this.ultimoArchivo = this.openFileDialog.FileName;
 
@@ -141,7 +137,6 @@ namespace FormVoleyStadistics
                     {
                         case ".xml":
                             listaAux = this.extXml.Leer(UltimoArchivo);// metodo de la clase generica
-
 
                             break;
                         case ".json":
@@ -194,18 +189,26 @@ namespace FormVoleyStadistics
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Esta seguro que quiere eliminar este jugador?", "Mensaje de confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (this.listaDeJugadores.Count == 1)
             {
-                this.listaDeJugadores.Remove(this.jugadorModificar);
-                this.lblMensaje.Visible = true;
-                this.lblMensaje.ForeColor = System.Drawing.Color.Black;
-                this.lblMensaje.Text = "Jugador Borrado Correctamente.";
-                if (!JugadorDeVoley.Delete(this.jugadorModificar))
+                MessageBox.Show("La lista no puede quedar vacia.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (MessageBox.Show("Esta seguro que quiere eliminar este jugador?", "Mensaje de confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Error no se pudo actualizar la base de datos.");
+                    this.listaDeJugadores.Remove(this.jugadorModificar);
+                    this.lblMensaje.Visible = true;
+                    this.lblMensaje.ForeColor = System.Drawing.Color.Black;
+                    this.lblMensaje.Text = "Jugador Borrado Correctamente.";
+                    if (!JugadorDeVoley.Delete(this.jugadorModificar))
+                    {
+                        MessageBox.Show("Error no se pudo actualizar la base de datos.");
+                    }
+
+                    this.RefrescarDataGrid();
                 }
 
-                this.RefrescarDataGrid();
             }
         }
 
@@ -218,17 +221,28 @@ namespace FormVoleyStadistics
         /// <param name="listaAux"> lista a copiar</param>
         private void CopyWithNewId(List<JugadorDeVoley> listaAux)
         {
-            foreach (JugadorDeVoley item in listaAux) 
+            List<JugadorDeVoley> dataBase = JugadorDeVoley.ReadAll();
+            foreach (JugadorDeVoley item in listaAux)
             {
-                if (!this.listaDeJugadores.Contains(item))
-                {
-                    item.Id = item.GenerarId(this.listaDeJugadores, FrmJugadores.MaxId); // le cambio el id a uno valido para la lista en la que lo voy a añadir
-                    if (!JugadorDeVoley.Insert(item)) // los añado a la base de datos
+
+                    if (!this.listaDeJugadores.Contains(item))
                     {
-                        MessageBox.Show("Error no se pudo guardar en la base de datos.");
+                        if (!JugadorDeVoley.Insert(item)) // los añado a la base de datos
+                        {
+                            MessageBox.Show("Error no se pudo guardar en la base de datos.");
+                        }
+                        dataBase = JugadorDeVoley.ReadAll();
+                        int index;
+                        index = dataBase.IndexOf(item);
+                        if (index != -1)
+                        {
+                            this.listaDeJugadores.Add(dataBase[index]);
+
+                        }
                     }
-                    this.listaDeJugadores.Add(item); // los añado a la lista del formulario
-                }
+                //item.Id = item.GenerarId(this.listaDeJugadores, FrmJugadores.MaxId); // le cambio el id a uno valido para la lista en la que lo voy a añadir
+                //this.listaDeJugadores.Add(item); // los añado a la lista del formulario
+
             }
         }
 
@@ -246,24 +260,21 @@ namespace FormVoleyStadistics
             this.lblMensaje.Visible = false;
             this.frmNuevoJugador = new FrmNuevoJugador(jugadorAModificar);
             return this.frmNuevoJugador.ShowDialog();
-        } 
+        }
 
         /// <summary>
         /// Actualiza el data grid solo si la lista de jugadores tiene algo 
         /// </summary>
         private void RefrescarDataGrid()
         {
+
             if (this.listaDeJugadores.Count > 0)
             {
                 this.dataGridJugadores.DataSource = null;
                 this.dataGridJugadores.DataSource = this.listaDeJugadores;
                 this.dataGridJugadores.Columns["Nombre"].DisplayIndex = 1;
                 this.dataGridJugadores.Columns["Apellido"].DisplayIndex = 2;
-                // this.dataGridJugadores.Columns["Id"].Width = 50;
                 this.dataGridJugadores.Columns["Id"].HeaderText = "ID";
-                // this.dataGridJugadores.Columns["Peso"].Width = 50;
-                // this.dataGridJugadores.Columns["Altura"].Width = 50;
-                // this.dataGridJugadores.Columns["FechaNacimiento"].Width = 140;
                 this.dataGridJugadores.Columns["FechaNacimiento"].HeaderText = "Fecha de nacimiento";
                 this.dataGridJugadores.Columns["PaisDeNacimiento"].HeaderText = "Pais";
             }
