@@ -11,6 +11,7 @@ namespace FormVoleyStadistics
 {
     public partial class FrmClubes : FrmPlantilla
     {
+        #region Atributos
         private FrmNuevoClub frmNuevoClub;
         public List<Club> listaClubes;
         private List<JugadorDeVoley> listaJugadores;
@@ -19,7 +20,9 @@ namespace FormVoleyStadistics
         private ExtXml<List<Club>> extXml; // se crea atributo de clase generica
         private ExtJson<List<Club>> extJson;
 
+        #endregion
 
+        #region Constructor
         public FrmClubes(List<JugadorDeVoley> listaJugadores)
         {
             InitializeComponent();
@@ -31,6 +34,9 @@ namespace FormVoleyStadistics
             this.extJson = new ExtJson<List<Club>>();
         }
 
+        #endregion
+
+        #region Manejadores
         protected void FrmPlantilla_Load(object sender, EventArgs e)
         {
             this.RefrescarDataGrid();
@@ -60,7 +66,6 @@ namespace FormVoleyStadistics
             }
         }
 
-
         private void dataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1) // hago visible los botones de modificar y eliminar
@@ -87,13 +92,6 @@ namespace FormVoleyStadistics
             }
         }
 
-        private DialogResult AbrirFrmModificarClub(Club clubAModificar)
-        {
-            BuscarJugadoresDisponibles();
-            this.frmNuevoClub = new FrmNuevoClub(this.listaJugadoresDisponibles, clubAModificar);
-            return this.frmNuevoClub.ShowDialog();
-        }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (this.listaClubes.Count == 1)
@@ -113,7 +111,6 @@ namespace FormVoleyStadistics
                 }
             }
         }
-
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -177,6 +174,17 @@ namespace FormVoleyStadistics
             }
         }
 
+
+        #endregion
+
+        #region Metodos
+        private DialogResult AbrirFrmModificarClub(Club clubAModificar)
+        {
+            BuscarJugadoresDisponibles();
+            this.frmNuevoClub = new FrmNuevoClub(this.listaJugadoresDisponibles, clubAModificar);
+            return this.frmNuevoClub.ShowDialog();
+        }
+
         protected void RefrescarDataGrid()
         {
             if (this.listaClubes.Count > 0)
@@ -217,6 +225,9 @@ namespace FormVoleyStadistics
             }
         }
 
+        /// <summary>
+        /// arama la lista de jugadores disponibles que no estan en ningun club.
+        /// </summary>
         private void BuscarJugadoresDisponibles()
         {
             bool add = true;
@@ -238,6 +249,8 @@ namespace FormVoleyStadistics
                 }
             }
         }
+
+        #endregion
 
     }
 }
