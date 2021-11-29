@@ -81,7 +81,6 @@ namespace FormVoleyStadistics
             if (this.lblMensaje.InvokeRequired)
             {
                 Action<string> delegado = this.MostrarLbl;
-                // Callback d = new Callback(this.MostrarLbl);
                 object[] objs = new object[] { texto };
                 this.Invoke(delegado, objs);
                 Thread.Sleep(3000);

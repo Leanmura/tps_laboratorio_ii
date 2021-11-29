@@ -349,7 +349,7 @@ namespace FormVoleyStadistics
                 this.Invoke(delegado, objs);
                 Thread.Sleep(3000);
                 objs = new object[] { "" };
-                this.Invoke(delegado, objs);
+                this.Invoke(delegado, objs); ///?????????????
             }
             else
             {
